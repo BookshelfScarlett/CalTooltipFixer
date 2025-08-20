@@ -1,15 +1,7 @@
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Weapons.Magic;
 using CalamityMod.Items.Weapons.Ranged;
-using CalamityMod.Items.Weapons.Summon;
-using CalamityMod.Projectiles.Melee;
-using CalTooltipFixer.Method;
-using Steamworks;
-using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
 
@@ -50,7 +42,8 @@ namespace CalTooltipFixer.Core
 
                 ModContent.ItemType<BloodflareCore>(),
                 ModContent.ItemType<AeroStone>(),
-                ModContent.ItemType<WarbanneroftheSun>()
+                ModContent.ItemType<WarbanneroftheSun>(),
+                ModContent.ItemType<AscendantInsignia>()
             ];
             GiveCalTooltipList =
             [

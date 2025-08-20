@@ -4,3 +4,10 @@ CalamityModifyPingText: Calamity Modiflication
 GoozmaModName: Hunt of the God Damage Resistance
 CalamityResistance.PingText: Calamity Resistance
 OldFashionedSupport: "{0} deals {1} base damage, affected by {2}"
+
+Items: {
+	TesterSword: {
+		DisplayName: Tester Sword
+		Tooltip: ""
+	}
+}

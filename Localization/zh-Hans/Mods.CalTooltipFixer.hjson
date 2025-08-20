@@ -4,3 +4,10 @@ CalamityModifyPingText: 灾厄模组改动
 GoozmaModName: 旧神之猎模组武器减伤
 CalamityResistance.PingText: 灾厄模组武器减伤
 OldFashionedSupport: "{0}造成{1}伤害，取{2}伤害加成"
+
+Items: {
+	TesterSword: {
+		// DisplayName: Tester Sword
+		// Tooltip: ""
+	}
+}

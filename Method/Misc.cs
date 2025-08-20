@@ -1,3 +1,4 @@
+using CalTooltipFixer.Content.Players;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -5,6 +6,7 @@ namespace CalTooltipFixer.Method
 {
     public static partial class MethodList
     {
+        public static TooltipPlayer ThisMod(this Player player) => player.GetModPlayer<TooltipPlayer>();
         public static Projectile ThisProjMod(int type)
         {
             //遍历几乎所有射弹

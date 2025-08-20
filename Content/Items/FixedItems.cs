@@ -23,6 +23,7 @@ using CalTooltipFixer.Core;
 using CalTooltipFixer.Method;
 using Microsoft.Xna.Framework;
 using Terraria;
+using Terraria.GameContent.UI.Chat;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -161,6 +162,22 @@ namespace CalTooltipFixer.Content.Items
                 int locketDamage = 7;
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "VLocket", locketDamage);
             }
+            //翱翔证章：无法叠加
+            if (item.ThisItem<AscendantInsignia>())
+            {
+                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "AscendantInsignia", "[i:EmpressFlightBooster]");
+            }
+            //潜水服：提示这个东西伤害减免和移动速度
+            if (item.ThisItem<AbyssalDivingGear>())
+            {
+                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "AbyssGear.MoveSpeed");
+                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "AbyssGear.DR");
+            }
+            //聚合脑：延长增益的效果与保留效果实际
+            if (item.ThisItem<TheAmalgam>())
+            {
+                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "AmalgamBuffsSave");
+            }
             if (item.ThisItem(ItemID.SlimySaddle) || item.ThisItem(ItemID.PogoStick) || item.ThisItem(ItemID.QueenSlimeMountSaddle))
             {
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "SlimeSaddleNerfed");
@@ -175,8 +192,12 @@ namespace CalTooltipFixer.Content.Items
         {
             if (item.ThisItem<PlagueTaintedSMG>())
             {
-                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.WeaponPath + "PlagueSMG.Crits", PlagueSMGCrtisChance);
-                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.WeaponPath + "PlagueSMG.Special");
+                bool exoLore = LocalPlayer.GetModPlayerField(CrossMod.Inheritance, "CIPlayer", "CalamityInheritancePlayer", "LoreExo").Value;
+                if (exoLore)
+                {
+                    tooltips.QuickNewLineNoColor(Mod, TooltipConstants.WeaponPath + "PlagueSMG.Crits", PlagueSMGCrtisChance);
+                    tooltips.QuickNewLineNoColor(Mod, TooltipConstants.WeaponPath + "PlagueSMG.Special");
+                }
             }
             
             //诺法雷：反作弊
@@ -261,6 +282,7 @@ namespace CalTooltipFixer.Content.Items
         #region 处理灾厄免伤
         private void CalamityDamageResisitance(Item item, List<TooltipLine> tooltips)
         {
+            
             #region 字符值所在的地址
             string resistanceSpecial = TooltipConstants.WeaponPath + "Special";
             #endregion

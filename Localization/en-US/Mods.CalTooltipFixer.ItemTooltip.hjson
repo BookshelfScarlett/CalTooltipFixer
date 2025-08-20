@@ -30,6 +30,14 @@ OldFashionedBounesText:
 	'''
 CanOldFashionedBounes: "{0}[c/FFE5AC:The projectiles/minions spawned by this accessory can be enhanced by Old Fashioned.]"
 CosmicActualRequirement: Requires over 10 (not equal to 10) to use the weapon
+AscendantInsignia: ""
+
+AbyssGear: {
+	MoveSpeed: ""
+	AbyssGear: ""
+}
+
+AmalgamBuffSave: ""
 
 Nucleogenesis: {
 	DebuffList: Debuffs that could inflict: {0}

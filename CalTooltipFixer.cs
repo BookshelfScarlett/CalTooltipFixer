@@ -13,6 +13,7 @@ namespace CalTooltipFixer
 		public static Mod WrathOfTheGod;
 		public static Mod Catalyst;
 		public static Mod Inheritance;
+		public static Mod Infernum;
 		public override void Load()
 		{
 			Instance = this;
@@ -27,7 +28,8 @@ namespace CalTooltipFixer
                 Hunt,
                 WrathOfTheGod,
                 Catalyst,
-                Inheritance
+                Inheritance,
+				Infernum
 			];
 			for (int i = 0; i < mods.Length; i++)
 			{
@@ -37,6 +39,7 @@ namespace CalTooltipFixer
 			ModLoader.TryGetMod(CrossMod.WrathOfTheGodName, out WrathOfTheGod);
 			ModLoader.TryGetMod(CrossMod.Catalyst, out Catalyst);
 			ModLoader.TryGetMod(CrossMod.Inheritance, out Inheritance);
+			ModLoader.TryGetMod(CrossMod.Infernum, out Infernum);
         }
         public override void Unload()
         {
@@ -48,7 +51,11 @@ namespace CalTooltipFixer
         {
 			Mod[] mods =
 			[
-				Hunt,WrathOfTheGod,Catalyst,Inheritance
+				Hunt,
+				WrathOfTheGod,
+				Catalyst,
+				Inheritance,
+				Infernum
 			];
 			for (int i = 0; i < mods.Length; i++)
 			{

@@ -31,6 +31,14 @@ OldFashionedBounesText:
 	'''
 CanOldFashionedBounes: "{0}[c/FFE5AC:该饰品生成的射弹可以被古典酒增强]"
 CosmicActualRequirement: 实际需要大于且不等于{0}格仆从栏位才能使用
+// AscendantInsignia: ""
+
+AbyssGear: {
+	// MoveSpeed: ""
+	// AbyssGear: ""
+}
+
+// AmalgamBuffSave: ""
 
 Nucleogenesis: {
 	DebuffList: 可赋予敌怪的减益：{0}
