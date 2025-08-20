@@ -1,0 +1,37 @@
+IvyWhip: ""
+
+NanotechFixed: {
+	BladeCap:
+		'''
+		Damage of nanoblades is heavliy reduced when there more than {0} nanoblades exist
+		Nanoblades only have {1} tiles of homing distance
+		'''
+	RealDamage: Stealth attack addtionally deals {0}x damage instead of just +5% damage
+}
+
+BloodCoreRealRegen: Equivalent +{0}HP/s life regen speed
+AeroStoneNoFeather: The flight recovery is disabled while the Featherfall buff is active
+WarbannerBonus: The damage bonus is only triggered when within {0} tiles of an enemy. Current bonus: {1}%
+SlimeSaddleNerfed: Heavliy reduced horizonal speed
+VLocket:
+	'''
+	Duplicate deals {0}% of weapon damage and disable stealth strike
+	[i:CalamityMod/OldFashioned]Duplicate grants bonus of Old Fashioned
+	'''
+OldFashionedBounesText:
+	'''
+	A small text wall about the Old Fashioned:
+	Whether some accessory/armor bonuses can receive Old Fashioned's damage boost...
+	Depends solely on whether they are marked as eligible for its enhancement
+	Bonuses from other mods, like extra projectiles, won't get the boost without such markings
+	And the boost is also affected by internal execution order, but we won't dig it so much
+	Calamity Tooltip Fixer will try to mark eligible items but they may not be accurate, just for reference. 
+	Most of armor bonuses and some accessories are unmarked for now, to be added later.
+	'''
+CanOldFashionedBounes: "{0}[c/FFE5AC:The projectiles/minions spawned by this accessory can be enhanced by Old Fashioned.]"
+CosmicActualRequirement: Requires over 10 (not equal to 10) to use the weapon
+
+Nucleogenesis: {
+	DebuffList: Debuffs that could inflict: {0}
+	General: "{0} deals {1} base damage, affected by {2}"
+}

@@ -1,0 +1,31 @@
+NPCName: {
+	AresName: Ares
+	ExoTwinsName: Apollo and Artemis
+	ThanatosName: Thanatos
+}
+
+ClassName: {
+	Melee: ""
+	Ranged: ""
+	Magic: ""
+	Summon: ""
+	Rogue: ""
+	Best: ""
+}
+
+ClassNameReal: {
+	Melee: "[i:WarriorEmblem][c/FFC67B:Melee Class]"
+	Ranged: "[i:RangerEmblem][c/8BFFE2:Ranged Class]"
+	Magic: "[i:SorcererEmblem][c/FFA2F3:Magic Class]"
+	Summon: "[i:SummonerEmblem][c/81A2FC:Summon Class]"
+	Rogue: "[i:CalamityMod/RogueEmblem][c/B278FF:Rogue Class]"
+}
+
+ProjectileName: {
+	Nanoblade: Nanoblade
+	Nanobeam: Nanobeam
+	SilvaCrystal: ""
+	ElectricSpark: Sparks
+}
+
+BuffName.Irra: ""

@@ -1,0 +1,31 @@
+NPCName: {
+	AresName: 阿瑞斯
+	ExoTwinsName: 阿波罗与阿尔特弥斯
+	ThanatosName: 塔纳托斯
+}
+
+ClassName: {
+	Melee: 取近战伤害加成
+	Ranged: 取远程伤害加成
+	Magic: 取魔法伤害加成
+	Summon: 取召唤伤害加成
+	Rogue: 取盗贼伤害加成
+	Best: 取最高的职业伤害加成
+}
+
+ClassNameReal: {
+	Melee: "[i:WarriorEmblem][c/FFC67B:近战职业]"
+	Ranged: "[i:RangerEmblem][c/8BFFE2:远程职业]"
+	Magic: "[i:SorcererEmblem][c/FFA2F3:魔法职业]"
+	Summon: "[i:SummonerEmblem][c/81A2FC:召唤职业]"
+	Rogue: "[i:CalamityMod/RogueEmblem][c/B278FF:盗贼职业]"
+}
+
+ProjectileName: {
+	Nanoblade: 纳米刀刃
+	Nanobeam: 纳米光束
+	SilvaCrystal: 林海水晶
+	ElectricSpark: 电火花
+}
+
+// BuffName.Irra: ""

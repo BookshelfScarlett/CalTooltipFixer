@@ -1,0 +1,133 @@
+RainbowWhip:
+	'''
+	[c/DC143C:Calamity Modiflication:]
+	{0}x summon tag damage
+	{1}% summon tag critical strike chance
+	Your summons will focus struck enemies
+	'''
+BoneWhip:
+	'''
+	[c/DC143C:Calamity Modiflication:]
+	{0}x summon tag damage
+	Your summons will focus struck enemies
+	'''
+FireWhip:
+	'''
+	[c/DC143C:Calamity Modiflication]
+	Your summons will focus struck enemies
+	Strike enemies with blazing energy
+	Blazing energy explodes from enemies hit by summons
+	This effect deals {0}% of your summons damage instead of 275%
+	'''
+CoolWhip:
+	'''
+	[c/DC143C:Calamity Modiflication:]
+	{0}x summon tag damage
+	Your summons will focus struck enemies
+	Strike enemies to summon a friendly snowflake
+	'Let me have some of that cool whip'
+	'''
+MaceWhip:
+	'''
+	[c/DC143C:Calamity Modiflication:]
+	{0}x summon tag damage
+	{1}% summon tag critical strike chance
+	Your summons will focus struck enemies
+	'''
+SwordWhip:
+	'''
+	[c/DC143C:Calamity Modiflication:]
+	{0}x summon tag damage
+	Your summons will focus struck enemies
+	Strike enemies to gain whip attack speed
+	'''
+LeatherWhip:
+	'''
+	[c/DC143C:Calamity Modiflication:]
+	{0}x summon tag damage
+	Your summons will focus struck enemies
+	'Die monster!'
+	'''
+ThornWhip:
+	'''
+	[c/DC143C:Calamity Modiflication:]
+	{0}x summon tag damage
+	Your summons will focus struck enemies
+	Strike enemies to gain whip attack speed
+	'''
+ThornWhipCatalystNerfed:
+	'''
+	[c/FA85F3:Catalyst Modiflication]
+	Nerfed weapon's damage from 28 to {0}, use time from 30 to {1};
+	'''
+RogueStealthMul: "[c/F796EE: Stealth Damage Multiple:] {0}%"
+
+PlagueSMG: {
+	Crits: "[c/96F79C:{0}% chance to critically strike if the target is afflicted with the Plague debuff.]"
+	Special: "[c/96F79C:This effect will be disabled if equipping][i:CalamityMod/DaawnlightSpiritOrigin] [c/96F79C:or] [i:CalamityMod/AlchemicalFlask]"
+}
+
+NorfleetAntiCheese:
+	'''
+	Attempting to fire more than {0} shots in a row without reloading will trigger anti-cheat and kill yourself
+	Quiet unnecessary mechanic...
+	'''
+IceBarrageHomingDist: Target can only be locked in within {0} tiles
+CosmicActualRequirement: Requires over {0} but not equal to minion slots to use the weapon
+
+BossResistanceConstant: {
+	General: "{0} only takes {1}% damage of the weapon"
+	TrueMelee: "{0} only takes {1}% damage of the true melee weapon"
+	SpecialDR: "{0}{1}"
+}
+
+GoozmaResis: {
+	General: This weapon deals {0}% damage to Goozma
+	TrueMelee: True melee deals {0}% damage to Goozma
+	Minion: This weapon's minion deals {0}% damage Goozma
+	Others: ""
+}
+
+AstralSlimeResis: {
+	General: This weapon deals {0}% damage to Astrageldon
+	SpecialDR: This weapon deals {0}% damage to Astrageldon during certain attacks
+	TrueMelee: True melee deals {0}% damage to Astrageldon
+	RogueStealthDR: Stealth attack deals {0}% damage to Astrageldon
+	RogueStealthDRSpecial: Stealth attack deals {0}% damage to Astrageldon during certain attacks
+	LeonidProgenitorSpecialDR: Astrageldon has {0}% of damage resistance on small comets and stars, {1}% on large comets and main projectile
+	VortexpopperDR:
+		'''
+		This weapons deals {0}% of damage when combined with [i:CalamityMod/HyperiusBullet]Hyperius Bullet
+		This weapons deals {1}% of damage when combined with [i:CalamityMod/BubonicRound]Bubonic Round
+		'''
+}
+
+CalamityResistanceValue: {
+	General: "{0}{1}"
+	TrueMelee: "{0}{1}"
+	Piercing: ""
+
+	Special: {
+		TheFinalDawn: {
+			Lingering: "{0} takes {1}% damage of lingering essence"
+			Lunge: "{0} takes {1}% damage of lunge"
+		}
+
+		EclipsesFall: {
+			Thanatos: "{0} takes {1}% damage of main javelin"
+			ExoTwins: "{0} takes {1}% damage of small javelin"
+		}
+
+		ArkoftheCosmosThrown: "{0} takes {1}% damage of the throw"
+		DynamicPursuer: "{0} takes {1}% damage of the weapon"
+		PrismaticBreaker: "{0} takes {1}% damage of the beam"
+		Sirius: "{0} takes {1}% damage of minion's explosion"
+		Ultima: "{0} takes {1}% damage of ultima laser"
+		TarragonThrowingDart: "{0} takes {1}% damage of thorns"
+		TheEnforcer: "{0} takes {1}% damage of essence"
+		Omicron: "{0} takes {1}% damage of right click bomb"
+		Kalander: "{0} takes {1}% damage of Paradoxica"
+		GaelsGreatsword: "{0} takes {1}% damage of giant skull"
+		Wrathwing: "{0} takes {1}% damage of fireballs"
+	}
+}

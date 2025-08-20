@@ -1,0 +1,4 @@
+displayName = Calamity Tooltips Fixer
+author = Scarlet
+modReferences = CalamityMod
+version = 1.0.1.1
