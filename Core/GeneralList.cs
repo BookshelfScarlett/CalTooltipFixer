@@ -7,7 +7,7 @@ using Terraria.ModLoader;
 
 namespace CalTooltipFixer.Core
 {
-    public static class CalFixerList
+    public partial class CalFixerList
     {
         private static List<int> oldFashionedList = [];
         private static List<int> giveExtraTooltipList = [];
@@ -21,6 +21,7 @@ namespace CalTooltipFixer.Core
         {
             SetOldFasionList();
             SetShouldGiveExtraTooltipList();
+            LoadResistance();
         }
 
         private static void SetShouldGiveExtraTooltipList()
@@ -43,6 +44,8 @@ namespace CalTooltipFixer.Core
                 ModContent.ItemType<BloodflareCore>(),
                 ModContent.ItemType<AeroStone>(),
                 ModContent.ItemType<WarbanneroftheSun>(),
+                ModContent.ItemType<AbyssalDivingSuit>(),
+                ModContent.ItemType<TheAmalgam>(),
                 ModContent.ItemType<AscendantInsignia>()
             ];
             GiveCalTooltipList =
@@ -58,6 +61,8 @@ namespace CalTooltipFixer.Core
             OldFashionedList = null;
             GiveExtraTooltipList = null;
             GiveCalTooltipList = null;
+            UnLoadResistance();
+
         }
         public static void SetOldFasionList()
         {

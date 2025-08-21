@@ -4,6 +4,16 @@ NPCName: {
 	ThanatosName: Thanatos
 }
 
+ModName: {
+	CalamityMod: ""
+	WrathoftheGodName: ""
+	HuntOfTheGodName: ""
+	Catalyst: ""
+	Inheritance: ""
+	Infernum: ""
+	Vanilla: ""
+}
+
 ClassName: {
 	Melee: ""
 	Ranged: ""

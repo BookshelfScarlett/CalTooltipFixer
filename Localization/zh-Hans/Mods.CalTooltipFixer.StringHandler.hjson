@@ -4,6 +4,16 @@ NPCName: {
 	ThanatosName: 塔纳托斯
 }
 
+ModName: {
+	CalamityMod: 灾厄
+	// WrathoftheGodName: ""
+	// HuntOfTheGodName: ""
+	// Catalyst: ""
+	// Inheritance: ""
+	Infernum: 炼狱
+	Vanilla: 原版
+}
+
 ClassName: {
 	Melee: 取近战伤害加成
 	Ranged: 取远程伤害加成

@@ -1,0 +1,17 @@
+GenericHeader: ""
+GeneralResistanceTooltip: ""
+ClearTextKet:""
+ResistanceAres: {
+	DisplayName: Resistance Ares
+	Tooltip: ""
+}
+
+ResistanceThanatos: {
+	DisplayName: Resistance Thanatos
+	Tooltip: ""
+}
+
+ResistanceExoTwins: {
+	DisplayName: Resistance Exo Twins
+	Tooltip: ""
+}

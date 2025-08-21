@@ -37,7 +37,7 @@ AbyssGear: {
 	AbyssGear: ""
 }
 
-AmalgamBuffSave: ""
+AmalgamBuffsSave: ""
 
 Nucleogenesis: {
 	DebuffList: Debuffs that could inflict: {0}

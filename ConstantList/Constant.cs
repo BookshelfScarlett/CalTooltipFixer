@@ -35,9 +35,10 @@ namespace CalTooltipFixer.ConstantList
         #region 必要地址串
         public static string ItemPath => MethodList.GetLocalText("ItemTooltip.");
         public static string WeaponPath => MethodList.GetLocalText("WeaponTooltip.");
-        public static string GetCanOldFashionedText => (ItemPath + "CanOldFashionedBounes");
+        public static string GetCanOldFashionedText => ItemPath + "CanOldFashionedBounes";
         public static string CalamityModifyText => MethodList.GetLocalText("CalamityModifyPingText");
         public static string CalamityResistanceText => MethodList.GetLocalText("CalamityResistance.PingText");
+        public static string ResistanceHeaderText => MethodList.GetLocalText("ResistanceItem.GenericHeader");
         public static string CalamityResistanceValue => WeaponPath + "CalamityResistanceValue.";
         public static string CalExtraText => MethodList.GetLocalText("CalTooltipFixerExtra");
         public static string CatalystModifyText => MethodList.GetLocalText("CatalystModName");

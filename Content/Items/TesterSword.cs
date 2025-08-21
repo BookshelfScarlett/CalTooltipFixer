@@ -41,9 +41,22 @@ namespace CalTooltipFixer.Content.Items
             }
             */
             #endregion
-            bool exoLore = player.GetInheritancePlayerFieldBoolen("LoreExo").Value || player.GetInheritancePlayerFieldBoolen("PanelsExo").Value;
-            if (exoLore)
-                Main.NewText("thisText");
+            // bool exoLore = player.GetInheritancePlayerFieldBoolen("LoreExo").Value || player.GetInheritancePlayerFieldBoolen("PanelsExo").Value;
+            // if (exoLore)
+            //     Main.NewText("thisText");
+            string getString = player.ThisMod()._cacheResistanceList;
+            bool isFirstFrame = player.itemAnimation == player.itemAnimationMax;
+            if (!isFirstFrame)
+                return base.UseItem(player);
+
+            if (!string.IsNullOrEmpty(getString))
+            {
+                Main.NewText($"非空缓存名：{getString}");
+            }
+            else
+            {
+                Main.NewText($"无缓存名");
+            }
             return base.UseItem(player);
         }
     }

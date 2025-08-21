@@ -19,6 +19,7 @@ using CalamityMod.NPCs.ExoMechs.Artemis;
 using CalamityMod.NPCs.ExoMechs.Thanatos;
 using CalTooltipFixer.ConstantList;
 using CalTooltipFixer.Content.Items.BuffPlaceholder;
+using CalTooltipFixer.Content.Players;
 using CalTooltipFixer.Core;
 using CalTooltipFixer.Method;
 using Microsoft.Xna.Framework;
@@ -33,7 +34,8 @@ namespace CalTooltipFixer.Content.Items
     public class FixedItem : GlobalItem 
     {
         public override bool InstancePerEntity => true;
-        public Player LocalPlayer => Main.LocalPlayer;
+        public static Player LocalPlayer => Main.LocalPlayer;
+        public static TooltipPlayer ModPlayer => LocalPlayer.ThisMod();
         #region 字符串挂件门
         public static string MeleeClass => Language.GetTextValue(MethodList.StringNameHandler("ClassName.Melee"));
         public static string RangedClass => Language.GetTextValue(MethodList.StringNameHandler("ClassName.Ranged"));
@@ -168,7 +170,7 @@ namespace CalTooltipFixer.Content.Items
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "AscendantInsignia", "[i:EmpressFlightBooster]");
             }
             //潜水服：提示这个东西伤害减免和移动速度
-            if (item.ThisItem<AbyssalDivingGear>())
+            if (item.ThisItem<AbyssalDivingSuit>())
             {
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "AbyssGear.MoveSpeed");
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "AbyssGear.DR");
@@ -284,16 +286,16 @@ namespace CalTooltipFixer.Content.Items
         {
             
             #region 字符值所在的地址
-            string resistanceSpecial = TooltipConstants.WeaponPath + "Special";
+            string resistanceSpecial = TooltipConstants.WeaponPath + "CalamityResistanceValue.Special";
             #endregion
             //为了避免硬编出现的问题，这里需要间接通过本地化转过去
             string aresName = Language.GetTextValue(MethodList.StringNameHandler("NPCName.AresName"));
             string artemisAndApolloName = Language.GetTextValue(MethodList.StringNameHandler("NPCName.ExoTwinsName"));
             string thanatosName = Language.GetTextValue(MethodList.StringNameHandler("NPCName.ThanatosName")); 
             Color colorValue = new(132,255,255);
-            bool anyAres = MethodList.AnyNPCs<AresBody>();
-            bool anyExoTwins = MethodList.AnyNPCs<Apollo>() || MethodList.AnyNPCs<Artemis>();
-            bool anyThanatos = MethodList.AnyNPCs<ThanatosHead>();
+            bool anyAres = ModPlayer.ResistanceAresBool;
+            bool anyExoTwins = ModPlayer.ResistanceExoTwinsBool;
+            bool anyThanatos = ModPlayer.ResistanceThanatosBool;
             #region 免伤表比我命都长
             int resis90 = 90;
             int resis85 = 85;
@@ -307,7 +309,6 @@ namespace CalTooltipFixer.Content.Items
             int resis35 = 35;
             #endregion
             //先给真近战都上一个
-            
             if (item.ThisItem<TheFinalDawn>())
             {
                 //终曲黎明对塔有两套不同免伤
@@ -485,7 +486,6 @@ namespace CalTooltipFixer.Content.Items
                 {
                     tooltips.QuickNewLineWithColor(Mod, TooltipConstants.CalamityResistanceText, colorValue);
                     tooltips.QuickNewLineNoColor(Mod, TooltipConstants.BossResistance, aresName, resis85.ToString());
-
                 }
             }
             if (item.CountsAsClass<TrueMeleeDamageClass>())

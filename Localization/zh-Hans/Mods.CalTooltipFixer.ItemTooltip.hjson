@@ -31,14 +31,14 @@ OldFashionedBounesText:
 	'''
 CanOldFashionedBounes: "{0}[c/FFE5AC:该饰品生成的射弹可以被古典酒增强]"
 CosmicActualRequirement: 实际需要大于且不等于{0}格仆从栏位才能使用
-// AscendantInsignia: ""
+AscendantInsignia: 该饰品所有数值都不可以和{0}飞升之证叠加
 
 AbyssGear: {
-	// MoveSpeed: ""
-	// AbyssGear: ""
+	MoveSpeed: 只降低地面行走时的移动速度，不影响空中飞行时的水平速度
+	AbyssGear: 伤害减免类型为防前
 }
 
-// AmalgamBuffSave: ""
+AmalgamBuffsSave: 只会保存和延长灾厄Mod和原版的增益效果和持续时间
 
 Nucleogenesis: {
 	DebuffList: 可赋予敌怪的减益：{0}
