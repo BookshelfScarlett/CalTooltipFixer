@@ -92,7 +92,8 @@ namespace CalTooltipFixer.Core
 
                 ModContent.ItemType<FungalClump>(),
                 ModContent.ItemType<RottenBrain>(),
-                ModContent.ItemType<LuxorsGift>()
+                ModContent.ItemType<LuxorsGift>(),
+                ModContent.ItemType<StatisVoidSash>()
             ];
         }
         

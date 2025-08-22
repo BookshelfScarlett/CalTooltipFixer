@@ -1,8 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Threading;
 using CalamityMod;
-using CalamityMod.Buffs.Summon;
 using CalamityMod.Items.Accessories;
 using CalamityMod.Items.Ammo;
 using CalamityMod.Items.Potions.Alcohol;
@@ -12,19 +10,13 @@ using CalamityMod.Items.Weapons.Melee;
 using CalamityMod.Items.Weapons.Ranged;
 using CalamityMod.Items.Weapons.Rogue;
 using CalamityMod.Items.Weapons.Summon;
-using CalamityMod.NPCs;
-using CalamityMod.NPCs.ExoMechs.Apollo;
 using CalamityMod.NPCs.ExoMechs.Ares;
-using CalamityMod.NPCs.ExoMechs.Artemis;
-using CalamityMod.NPCs.ExoMechs.Thanatos;
 using CalTooltipFixer.ConstantList;
-using CalTooltipFixer.Content.Items.BuffPlaceholder;
 using CalTooltipFixer.Content.Players;
 using CalTooltipFixer.Core;
 using CalTooltipFixer.Method;
 using Microsoft.Xna.Framework;
 using Terraria;
-using Terraria.GameContent.UI.Chat;
 using Terraria.ID;
 using Terraria.Localization;
 using Terraria.ModLoader;
@@ -37,12 +29,6 @@ namespace CalTooltipFixer.Content.Items
         public static Player LocalPlayer => Main.LocalPlayer;
         public static TooltipPlayer ModPlayer => LocalPlayer.ThisMod();
         #region 字符串挂件门
-        public static string MeleeClass => Language.GetTextValue(MethodList.StringNameHandler("ClassName.Melee"));
-        public static string RangedClass => Language.GetTextValue(MethodList.StringNameHandler("ClassName.Ranged"));
-        public static string MagicClass => Language.GetTextValue(MethodList.StringNameHandler("ClassName.Magic"));
-        public static string SummonClass => Language.GetTextValue(MethodList.StringNameHandler("ClassName.Summon"));
-        public static string RogueClass => Language.GetTextValue(MethodList.StringNameHandler("ClassName.Rogue"));
-        public static string BestClass => Language.GetTextValue(MethodList.StringNameHandler("ClassName.Best"));
         public static string ProjectileString => MethodList.StringNameHandler("ProjectileName.");
         public static string BuffIconName => Language.GetTextValue(MethodList.StringNameHandler("BuffPlaceholder."));
         public static string OldFashionedDamageShown => Language.GetTextValue(MethodList.GetLocalText("OldFashionedSupport"));
@@ -86,7 +72,7 @@ namespace CalTooltipFixer.Content.Items
             foreach (var itemID in CalFixerList.GiveExtraTooltipList)
             {
                 if (item.ThisItem(itemID))
-                    tooltips.QuickNewLineWithColor(Mod, TooltipConstants.CalExtraText, TooltipConstants.CalTooltipExtraColor);
+                    tooltips.QuickNewLineWithColor(Mod, TooltipConstants.CalExtraText, TooltipConstants.CalExtraColor);
             }
 
             foreach (var giveCalItemID in CalFixerList.GiveCalTooltipList)
@@ -116,32 +102,25 @@ namespace CalTooltipFixer.Content.Items
         {
             if (item.ThisItem<Nanotech>())
             {
-
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "NanotechFixed.BladeCap", NanoBladeCap, NanoBladeHomingDist);
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "NanotechFixed.RealDamage", NanoDamageMul);
-                tooltips.QuickNewLineNoColor(Mod, OldFashionedDamageShown, ProjectileString.GetLangValue("Nanoblade"), NanoBladeDamage,TooltipConstants.RogueClassName.GetLangValue());
-                tooltips.QuickNewLineNoColor(Mod, OldFashionedDamageShown, ProjectileString.GetLangValue("Nanobeam"), NanoBeamDamage,TooltipConstants.RogueClassName.GetLangValue());
+                tooltips.QuickNewLineNoColor(Mod, OldFashionedDamageShown, ProjectileString.ToLangValue("Nanoblade"), NanoBladeDamage,TooltipConstants.RogueClassName.ToLangValue());
+                tooltips.QuickNewLineNoColor(Mod, OldFashionedDamageShown, ProjectileString.ToLangValue("Nanobeam"), NanoBeamDamage,TooltipConstants.RogueClassName.ToLangValue());
             }
             if (item.ThisItem<Nucleogenesis>())
             {
-                int sparkDamage = 60;
-                string immnueDebuff = MethodList.GetBuffIcon("IconIrradiated")
-                                    + MethodList.GetBuffIcon("IconAstralInfection")
-                                    + MethodList.GetBuffIcon("IconShadowFlames")
-                                    + MethodList.GetBuffIcon("IconElectric");
-
+                const int sparkDamage = 60;
+                string immnueDebuff = $"{MethodList.GetBuffIcon("IconIrradiated")}{MethodList.GetBuffIcon("IconAstralInfection")}{MethodList.GetBuffIcon("IconShadowFlames")}{MethodList.GetBuffIcon("IconElectric")}";
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "Nucleogenesis.DebuffList", immnueDebuff);
-                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "Nucleogenesis.General", ProjectileString.GetLangValue("ElectricSpark"), sparkDamage, TooltipConstants.SummonClassName.GetLangValue());
+                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "Nucleogenesis.General", ProjectileString.ToLangValue("ElectricSpark"), LocalPlayer.ToOldFashioned(sparkDamage), TooltipConstants.SummonClassName.ToLangValue());
 
             }
             if (item.ThisItem<StarTaintedGenerator>())
             {
-                int sparkDamage = 40;
-                string immnueDebuff = MethodList.GetBuffIcon("IconIrradiated")
-                                    + MethodList.GetBuffIcon("IconAstralInfection")
-                                    + MethodList.GetBuffIcon("IconElectric");
+                const int sparkDamage = 40;
+                string immnueDebuff = $"{MethodList.GetBuffIcon("IconIrradiated")}{MethodList.GetBuffIcon("IconAstralInfection")}{MethodList.GetBuffIcon("IconElectric")}";
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "Nucleogenesis.DebuffList", immnueDebuff);
-                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "Nucleogenesis.General", ProjectileString.GetLangValue("ElectricSpark"), sparkDamage, TooltipConstants.SummonClassName.GetLangValue());
+                tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "Nucleogenesis.General", ProjectileString.ToLangValue("ElectricSpark"), LocalPlayer.ToOldFashioned(sparkDamage), TooltipConstants.SummonClassName.ToLangValue());
             }
             //血炎晶核：实际恢复速度
             if (item.ThisItem<BloodflareCore>())
@@ -161,7 +140,7 @@ namespace CalTooltipFixer.Content.Items
             //惊天神盗盒
             if (item.ThisItem<VeneratedLocket>())
             {
-                int locketDamage = 7;
+                const int locketDamage = 7;
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "VLocket", locketDamage);
             }
             //翱翔证章：无法叠加
@@ -184,9 +163,17 @@ namespace CalTooltipFixer.Content.Items
             {
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "SlimeSaddleNerfed");
             }
+            //圣天：小作文
+            if (item.ThisItem<AngelicAlliance>())
+            {
+                string replacedPath = $"{TooltipConstants.ItemPath}{nameof(AngelicAlliance)}.ActualShift";
+                tooltips.HoldingShiftToReplace(Mod, replacedPath, TooltipConstants.CalExtraText, TooltipConstants.CalExtraColor);
+            }
+            //酒：小作文
             if (item.ThisItem<OldFashioned>())
             {
-                tooltips.QuickNewLineWithColor(Mod, TooltipConstants.CalExtraText, TooltipConstants.CalTooltipExtraColor);
+                string replacedPath = $"{TooltipConstants.ItemPath}OldFashionedBounesText";
+                tooltips.HoldingShiftToReplace(Mod, replacedPath, TooltipConstants.CalExtraText, TooltipConstants.CalExtraColor);
                 tooltips.QuickNewLineNoColor(Mod, TooltipConstants.ItemPath + "OldFashionedBounesText");
             }
         }
@@ -205,8 +192,8 @@ namespace CalTooltipFixer.Content.Items
             //诺法雷：反作弊
             if (item.ThisItem<Norfleet>())
             {
-                string norfleetColor = "DC143C";
-                tooltips.QuickNewLine(Mod, TooltipConstants.WeaponPath + "NorfleetAntiCheese", norfleetColor, NorfleetAntiCheeseTime);
+                Color norfleetColor = new(220, 20, 60);
+                tooltips.QuickNewLineWithColor(Mod, TooltipConstants.WeaponPath + "NorfleetAntiCheese", norfleetColor, NorfleetAntiCheeseTime);
             }
             //寒冰弹幕：显示最近的距大小
             if (item.ThisItem<IceBarrage>())
@@ -225,36 +212,36 @@ namespace CalTooltipFixer.Content.Items
         private void WhipsCases(Item item, List<TooltipLine> tooltips)
         {
             if (item.ThisItem(ItemID.RainbowWhip))
-                tooltips.FuckThisTooltipAndReplace(TooltipConstants.WeaponPath + "RainbowWhip", RainbowWhipMul);
+                tooltips.FuckThisTooltipAndReplace($"{TooltipConstants.WeaponPath}RainbowWhip", RainbowWhipMul);
 
             if (item.ThisItem(ItemID.BoneWhip))
-                tooltips.FuckThisTooltipAndReplace(TooltipConstants.WeaponPath + "BoneWhip", BoneWhipMul);
+                tooltips.FuckThisTooltipAndReplace($"{TooltipConstants.WeaponPath}BoneWhip", BoneWhipMul);
 
             if (item.ThisItem(ItemID.FireWhip))
-                tooltips.FuckThisTooltipAndReplace(TooltipConstants.WeaponPath + "FireWhip", FireWhipMul);
+                tooltips.FuckThisTooltipAndReplace($"{TooltipConstants.WeaponPath}FireWhip", FireWhipMul);
 
             if (item.ThisItem(ItemID.CoolWhip))
-                tooltips.FuckThisTooltipAndReplace(TooltipConstants.WeaponPath + "CoolWhip", CoolWhipMul);
+                tooltips.FuckThisTooltipAndReplace($"{TooltipConstants.WeaponPath}CoolWhip", CoolWhipMul);
 
             if (item.ThisItem(ItemID.MaceWhip))
-                tooltips.FuckThisTooltipAndReplace(TooltipConstants.WeaponPath + "MaceWhip", MaceWhipMul);
+                tooltips.FuckThisTooltipAndReplace($"{TooltipConstants.WeaponPath}MaceWhip", MaceWhipMul);
 
             if (item.ThisItem(ItemID.SwordWhip))
-                tooltips.FuckThisTooltipAndReplace(TooltipConstants.WeaponPath + "SwordWhip", SwordWhipMul);
+                tooltips.FuckThisTooltipAndReplace($"{TooltipConstants.WeaponPath}SwordWhip", SwordWhipMul);
             //皮鞭
             if (item.ThisItem(ItemID.BlandWhip))
-                tooltips.FuckThisTooltipAndReplace(TooltipConstants.WeaponPath + "LeatherWhip", LeatherWhipMul);
+                tooltips.FuckThisTooltipAndReplace($"{TooltipConstants.WeaponPath}LeatherWhip", LeatherWhipMul);
             
             if (item.ThisItem(ItemID.ThornWhip))
             {
                 //荆鞭需要单独处理灾劫的情况
-                tooltips.FuckThisTooltipAndReplace(TooltipConstants.WeaponPath + "ThornWhip", ThornWhipMul);
+                tooltips.FuckThisTooltipAndReplace($"{TooltipConstants.WeaponPath}ThornWhip", ThornWhipMul);
                 if (CalTooltipFixer.Catalyst is not null)
                 {
                     int thronDamage = 14;
                     int thronUseTime = 40;
                     int kbIndex = tooltips.FindIndex(line => line.Name == "Material");
-                    string fuckCatalyst = Language.GetTextValue(TooltipConstants.WeaponPath + "ThornWhipCatalystNerfed");
+                    string fuckCatalyst = Language.GetTextValue($"{TooltipConstants.WeaponPath}ThornWhipCatalystNerfed");
                     if (!string.IsNullOrEmpty(fuckCatalyst))
                     {
                         string realLine = string.Format(fuckCatalyst, thronDamage.ToString(), thronUseTime.ToString());
@@ -286,7 +273,7 @@ namespace CalTooltipFixer.Content.Items
         {
             
             #region 字符值所在的地址
-            string resistanceSpecial = TooltipConstants.WeaponPath + "CalamityResistanceValue.Special";
+            string resistanceSpecial = $"{TooltipConstants.WeaponPath}CalamityResistanceValue.Special";
             #endregion
             //为了避免硬编出现的问题，这里需要间接通过本地化转过去
             string aresName = Language.GetTextValue(MethodList.StringNameHandler("NPCName.AresName"));
@@ -507,7 +494,7 @@ namespace CalTooltipFixer.Content.Items
             {
                 if (item.ThisItem(samuraiBadge.Type))
                 {
-                    tooltips.QuickNewLineWithColor(Mod, TooltipConstants.CalExtraText, TooltipConstants.CalTooltipExtraColor);
+                    tooltips.QuickNewLineWithColor(Mod, TooltipConstants.CalExtraText, TooltipConstants.CalExtraColor);
                     ModifyWarbannerTooltip(tooltips, TooltipConstants.ItemPath + "WarbannerBonus", 0.3f);
                 }
             }
@@ -515,9 +502,6 @@ namespace CalTooltipFixer.Content.Items
         /// <summary>
         /// 灾劫我杀了你妈妈
         /// </summary>
-        /// <param name="item"></param>
-        /// <param name="tooltips"></param>
-        /// <param name="weaponTip"></param>
         private void FuckCatalyst(Item item, List<TooltipLine> tooltips)
         {
             //真他妈绝了
@@ -526,53 +510,52 @@ namespace CalTooltipFixer.Content.Items
                 return;
             //星史的免伤表又臭又长又复杂，只能这么打表了
             //对不起，灾厄的免伤表更长
-            string catalystColor = "FA85F3";
-            string basePath = TooltipConstants.WeaponPath + "AstralSlimeResis.";
-            string thisPath = basePath + "General";
-            string specialDRPath = basePath + "SpecialDR";
-            string trueMeleeDRPath = basePath + "TrueMelee";
-            string rogueStealthDRPath = basePath + "RogueStealthDR";
-            string rogueStealthSpecialDRPath = basePath + "RogueStealthDRSpecial";
-            string lionMetoerSpecialPath = basePath + "LeonidProgenitorSpecialDR";
-            string vortexpopperPath = basePath + "VortexpopperDR";
+            Color catalystColor = TooltipConstants.CatalystModifyColor;
+            string basePath = $"{TooltipConstants.WeaponPath}AstralSlimeResis.";
+            string thisPath = $"{basePath}General";
             string catalystName = "CatalystModName";
-            
+
             if (catalyst.TryFind(TooltipConstants.CatalystSuperBoss, out ModNPC boss))
             {
                 if (!NPC.AnyNPCs(boss.Type))
                     return;
+                string specialDRPath = $"{basePath}SpecialDR";
                 //1：遍历所有武器而非遍历弹幕，将免伤打入
                 if (item.CountsAsClass<MeleeDamageClass>())
                 {
                     int meleeDR = 90;
                     tooltips.SetupModLine(Mod, catalystName, catalystColor);
-                    tooltips.QuickNewLine(Mod, specialDRPath, meleeDR);
+                    tooltips.QuickNewLineNoColor(Mod, specialDRPath, meleeDR);
                 }
                 else if (item.CountsAsClass<MagicDamageClass>())
                 {
                     int magicDR = 55;
                     tooltips.SetupModLine(Mod, catalystName, catalystColor);
-                    tooltips.QuickNewLine(Mod, specialDRPath, magicDR);
+                    tooltips.QuickNewLineNoColor(Mod, specialDRPath, magicDR);
                 }
                 else if (item.CountsAsClass<TrueMeleeDamageClass>())
                 {
                     int trueMeleeDR = 80;
+                    string trueMeleeDRPath = $"{basePath}TrueMelee";
                     tooltips.SetupModLine(Mod, catalystName, catalystColor);
-                    tooltips.QuickNewLine(Mod, trueMeleeDRPath, trueMeleeDR);
+
+                    tooltips.QuickNewLineNoColor(Mod, trueMeleeDRPath, trueMeleeDR);
                 }
                 //潜伏攻击需要给每个盗贼武器单独写一个显示
                 else if (item.CountsAsClass<RogueDamageClass>())
                 {
                     int stealthDR = 65;
                     tooltips.SetupModLine(Mod, catalystName, catalystColor);
-                    tooltips.QuickNewLine(Mod, rogueStealthSpecialDRPath, stealthDR);
+
+                    string rogueStealthSpecialDRPath = $"{basePath}RogueStealthDRSpecial";
+                    tooltips.QuickNewLineNoColor(Mod, rogueStealthSpecialDRPath, stealthDR);
                 }
                 //将其他的伤害打入进去，单独打表。
                 else if (item.CountsAsClass<RangedDamageClass>() || item.CountsAsClass<SummonDamageClass>() || item.CountsAsClass<SummonMeleeSpeedDamageClass>())
                 {
                     int otherDR = 75;
                     tooltips.SetupModLine(Mod, catalystName, catalystColor);
-                    tooltips.QuickNewLine(Mod, specialDRPath, otherDR);
+                    tooltips.QuickNewLineNoColor(Mod, specialDRPath, otherDR);
                 }
                 //2.每个武器单独打表，不用注册额外的行
                 //TODO:动态修改
@@ -580,39 +563,41 @@ namespace CalTooltipFixer.Content.Items
                 {
                     int dr = 85;
 
-                    tooltips.QuickNewLine(Mod, thisPath, dr);
+                    tooltips.QuickNewLineNoColor(Mod, thisPath, dr);
                 }
                 if (item.ThisItem(ItemID.NebulaArcanum))
                 {
                     int dr = 75;
-                    tooltips.QuickNewLine(Mod, thisPath, dr);
+                    tooltips.QuickNewLineNoColor(Mod, thisPath, dr);
                 }
                 if (item.ThisItem<HivePod>())
                 {
                     int dr = 80;
-                    tooltips.QuickNewLine(Mod, thisPath, dr);
+                    tooltips.QuickNewLineNoColor(Mod, thisPath, dr);
                 }
+                string rogueStealthDRPath = $"{basePath}RogueStealthDR";
                 if (item.ThisItem<FantasyTalisman>() || item.ThisItem<RegulusRiot>())
                 {
                     int stealthDR = 80;
-                    tooltips.QuickNewLine(Mod, rogueStealthDRPath, stealthDR);
+                    tooltips.QuickNewLineNoColor(Mod, rogueStealthDRPath, stealthDR);
                 }
                 if (item.ThisItem<Malachite>())
                 {
                     int stealthDR = 70;
-                    tooltips.QuickNewLine(Mod, rogueStealthDRPath, stealthDR);
+                    tooltips.QuickNewLineNoColor(Mod, rogueStealthDRPath, stealthDR);
                 }
                 if (item.ThisItem<DukesDecapitator>())
                 {
                     int dr = 40;
-                    tooltips.QuickNewLine(Mod, thisPath, dr);
+                    tooltips.QuickNewLineNoColor(Mod, thisPath, dr);
                 }
                 if (item.ThisItem<Vortexpopper>())
                 {
                     int combinedWithHybrus = 90;
                     int combinedWithPlague = 80;
 
-                    tooltips.QuickNewLine(Mod, vortexpopperPath, combinedWithHybrus, combinedWithPlague);
+                    string vortexpopperPath = $"{basePath}VortexpopperDR";
+                    tooltips.QuickNewLineNoColor(Mod, vortexpopperPath, combinedWithHybrus, combinedWithPlague);
                 }
                 //狮源流星单独打表
                 if (item.ThisItem<LeonidProgenitor>())
@@ -621,7 +606,8 @@ namespace CalTooltipFixer.Content.Items
                     int bigAndSelfDR = 80;
 
                     tooltips.SetupModLine(Mod, catalystName, catalystColor);
-                    tooltips.QuickNewLine(Mod, lionMetoerSpecialPath, smallAndStarDR, bigAndSelfDR);
+                    string lionMetoerSpecialPath = $"{basePath}LeonidProgenitorSpecialDR";
+                    tooltips.QuickNewLineNoColor(Mod, lionMetoerSpecialPath, smallAndStarDR, bigAndSelfDR);
                 }
 
             }
@@ -636,7 +622,7 @@ namespace CalTooltipFixer.Content.Items
         {
             string basePath = TooltipConstants.WeaponPath + "GoozmaResis.";
             string path = basePath + "General";
-            string huntColor = "FAEF85";
+            Color huntColor = TooltipConstants.GoozmaModifyColor;
             string goozmaName = MethodList.GetLocalText("GoozmaModName");
             Mod hunt = CalTooltipFixer.Hunt;
             if (hunt is null)
@@ -649,54 +635,54 @@ namespace CalTooltipFixer.Content.Items
                 if (item.ThisItem<Seraphim>())
                 {
                     int seraphimResis = 1;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, seraphimResis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, seraphimResis);
                 }
                 //终曲黎明20%
                 if (item.ThisItem<TheFinalDawn>())
                 {
                     int finalDawnResis = 20;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, finalDawnResis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, finalDawnResis);
                 }
                 //树枝30%
                 if (item.ThisItem<TheWand>())
                 {
                     int wandResis = 30;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, wandResis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, wandResis);
                 }
                 //龙魂破、宙能50%
                 if (item.ThisItem<DragonPow>() || item.ThisItem<Excelsus>())
                 {
                     int resis = 50;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, resis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, resis);
                 }
                 //龙怒56%
                 if (item.ThisItem<DragonRage>())
                 {
                     int rageResis = 56;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, rageResis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, rageResis);
                 }
                 if (item.ThisItem<DynamicPursuer>() || item.ThisItem<TheJailor>())
                 {
                     int resis = 65;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, resis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, resis);
                 }
                 if (item.ThisItem<Condemnation>())
                 {
                     int resis = 70;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, resis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, resis);
                 }
                 if (item.ThisItem<PrimordialAncient>())
                 {
                     int resis = 75;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, resis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, resis);
                 }
                 //85%免伤
                 if (item.ThisItem<AtlasMunitionsBeacon>()
@@ -708,23 +694,23 @@ namespace CalTooltipFixer.Content.Items
                     || item.ThisItem<Wrathwing>())
                 {
                     int minionResis = 85;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, minionResis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, minionResis);
                 }
                 //90%
                 if (item.ThisItem<ArkoftheCosmos>() || item.ThisItem<PhotonRipper>() || item.ThisItem<SpineOfThanatos>())
                 {
                     int resis = 90;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, path, resis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, path, resis);
                 }
                 //真近战特殊
                 if (item.CountsAsClass<TrueMeleeDamageClass>())
                 {
                     string trueMelee = basePath + "TrueMelee";
                     int trueMeleeResis = 70;
-                    tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                    tooltips.QuickNewLine(Mod, trueMelee, trueMeleeResis);
+                    tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                    tooltips.QuickNewLineNoColor(Mod, trueMelee, trueMeleeResis);
                 }
                 //召唤伤害特殊
                 if (item.CountsAsClass<SummonDamageClass>())
@@ -735,8 +721,8 @@ namespace CalTooltipFixer.Content.Items
                     {
                         string minion = basePath + "Minion";
                         int minionResis = 85;
-                        tooltips.QuickNewLine(Mod, goozmaName, huntColor);
-                        tooltips.QuickNewLine(Mod, minion, minionResis);
+                        tooltips.QuickNewLineWithColor(Mod, goozmaName, huntColor);
+                        tooltips.QuickNewLineNoColor(Mod, minion, minionResis);
                     }
                 }
                 
@@ -747,7 +733,7 @@ namespace CalTooltipFixer.Content.Items
         {
             float multipler = GetWarbannerDamage(bonus);
             int floatToInt = (int)(multipler * 100f);
-            tooltips.QuickNewLine(Mod, path, WarbannerTiles, floatToInt.ToString());
+            tooltips.QuickNewLineNoColor(Mod, path, WarbannerTiles, floatToInt.ToString());
         }
         public static float GetWarbannerDamage(float MaxBonus)
         {

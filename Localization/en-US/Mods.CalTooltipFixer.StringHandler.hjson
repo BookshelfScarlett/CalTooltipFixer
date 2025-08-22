@@ -29,6 +29,7 @@ ClassNameReal: {
 	Magic: "[i:SorcererEmblem][c/FFA2F3:Magic Class]"
 	Summon: "[i:SummonerEmblem][c/81A2FC:Summon Class]"
 	Rogue: "[i:CalamityMod/RogueEmblem][c/B278FF:Rogue Class]"
+	Best:""
 }
 
 ProjectileName: {

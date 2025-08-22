@@ -18,7 +18,7 @@ namespace CalTooltipFixer.Content.Armor
             if (Hunt is null)
                 return false;
             int headType = GetShogunParts(HeadName);
-            return headType != -1 && entity.type == headType;
+            return headType != -1 || entity.type == headType;
         }
         public override void ModifyTooltips(Item item, List<TooltipLine> tooltips)
         {

@@ -6,7 +6,8 @@ GeneralResistanceTooltip:
 	聊天框输出只进行一次
 	按下右键时重置
 	'''
-ClearTextKet:""
+ClearTextKet: ""
+
 ResistanceAres: {
 	DisplayName: 阿瑞斯武器免伤表
 	Tooltip: "{0}"

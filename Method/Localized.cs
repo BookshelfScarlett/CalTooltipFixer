@@ -1,8 +1,12 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using CalamityMod.Items.Accessories;
+using CalTooltipFixer.ConstantList;
 using CalTooltipFixer.Content.Items.BuffPlaceholder;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Input;
+using Terraria;
 using Terraria.Localization;
 using Terraria.ModLoader;
 
@@ -14,113 +18,6 @@ namespace CalTooltipFixer.Method
         public static string StringNameHandler(string text) => GetLocalText("StringHandler." + text);
         public static string GetStringValueFromHandler(string text) => StringNameHandler(text);
         #region 快速创建新TooltipLine的多个重载方法
-        /// <summary>
-        /// 直接创建一个新的Tooltip，会在最底下显示
-        /// </summary>
-        /// <param name="tooltips"></param>
-        /// <param name="mod"></param>
-        /// <param name="path"></param>
-        [Obsolete("弃用")]
-        public static void QuickNewLine(this List<TooltipLine> tooltips, Mod mod, string path)
-        {
-            string textValue = Language.GetTextValue(path);
-            if (string.IsNullOrEmpty(textValue))
-                return;
-            
-            if (textValue is not null)
-            {
-                tooltips.Add(new TooltipLine(mod, "Name", textValue));
-            }
-            
-        }
-        /// <summary>
-        /// 直接创建一个新的Tooltip，输入16进制字符串以修改显示颜色
-        /// </summary>
-        /// <param name="tooltips"></param>
-        /// <param name="mod"></param>
-        /// <param name="path"></param>
-        /// <param name="colorValue">16进制颜色字符串</param>
-        [Obsolete("已废弃，使用QuickNewLineWithColor替代，原因：直接输入16进制字符串更难使用且无法与键入参做出区分")]
-        public static void QuickNewLine(this List<TooltipLine> tooltips, Mod mod, string path, string colorValue, bool abaondoned = false)
-        {
-            string textValue = Language.GetTextValue(path);
-            if (string.IsNullOrEmpty(textValue))
-                return;
-            //处理染色换行
-            string[] lines = textValue.Split(['\n'], StringSplitOptions.None);
-            for (int i = 0; i < lines.Length; i++)
-            {
-                lines[i] = $"[c/{colorValue}:{lines[i]}]";
-            }
-            string realValue = string.Join("\n", lines);
-            //创建即可
-            tooltips.Add(new TooltipLine(mod, "name", realValue));
-        }
-        /// <summary>
-        /// 直接创建一个新的Tooltip，附带键入参数
-        /// </summary>
-        /// <param name="tooltips"></param>
-        /// <param name="mod"></param>
-        /// <param name="path"></param>
-        /// <param name="args">键入参</param>
-        [Obsolete("弃用")]
-        public static void QuickNewLine(this List<TooltipLine> tooltips, Mod mod, string path, params object[] args)
-        {
-            string textValue = Language.GetTextValue(path);
-            //空文本返回
-            if (string.IsNullOrEmpty(textValue))
-                return;
-            //格式化文本
-
-            string realValue;
-            try
-            {
-                realValue = string.Format(textValue, args);
-            }
-            catch
-            {
-                //格式化出错则返回初始文本
-                realValue = textValue + "，格式化出错";
-            }
-            //创建即可
-            tooltips.Add(new TooltipLine(mod, "name", realValue));
-        }
-        /// <summary>
-        /// 直接创建一个新的Tooltip，输入16进制字符串以修改显示颜色，附带键入参数
-        /// </summary>
-        /// <param name="tooltips"></param>
-        /// <param name="mod"></param>
-        /// <param name="path"></param>
-        /// <param name="colorValue">16进制颜色字符串</param>
-        /// <param name="args">键入参</param>
-        [Obsolete("已废弃，使用QuickNewLineWithColor替代，原因：直接输入16进制字符串更难使用且无法与键入参做出区分")]
-        public static void QuickNewLine(this List<TooltipLine> tooltips, Mod mod, string path, string colorValue, bool abaondoned = false, params object[] args)
-        {
-            string textValue = Language.GetTextValue(path);
-            //空文本返回
-            if (string.IsNullOrEmpty(textValue))
-                return;
-            //格式化文本
-            string formattedValue;
-            try
-            {
-                formattedValue = string.Format(textValue, args);
-            }
-            catch
-            {
-                //格式化出错则返回初始文本
-                formattedValue = textValue + "，格式化出错";
-            }
-            //处理染色换行
-            string[] lines = formattedValue.Split(['\n'], StringSplitOptions.None);
-            for (int i = 0; i < lines.Length; i++)
-            {
-                lines[i] = $"[c/{colorValue}:{lines[i]}]";
-            }
-            string realValue = string.Join("\n", lines);
-            //创建即可
-            tooltips.Add(new TooltipLine(mod, "name", realValue));
-        }
         /// <summary>
         /// 直接创建一个新的Tooltip，会自动将xna转化为16进制字符串，附带键入参数
         /// </summary>
@@ -137,16 +34,7 @@ namespace CalTooltipFixer.Method
             if (string.IsNullOrEmpty(textValue))
                 return;
             //格式化文本
-            string formattedValue;
-            try
-            {
-                formattedValue = string.Format(textValue, args);
-            }
-            catch
-            {
-                //格式化出错则返回初始文本
-                formattedValue = textValue + "，格式化出错";
-            }
+            string formattedValue = textValue.GetFormatString(args);
             //处理染色换行
             string[] lines = formattedValue.Split(['\n'], StringSplitOptions.None);
             for (int i = 0; i < lines.Length; i++)
@@ -194,17 +82,7 @@ namespace CalTooltipFixer.Method
             if (string.IsNullOrEmpty(textValue))
                 return;
             //格式化文本
-
-            string realValue;
-            try
-            {
-                realValue = string.Format(textValue, args);
-            }
-            catch
-            {
-                //格式化出错则返回初始文本
-                realValue = textValue + "，格式化出错";
-            }
+            string realValue = textValue.GetFormatString(args);
             //创建即可
             tooltips.Add(new TooltipLine(mod, "name", realValue));
         }
@@ -252,15 +130,7 @@ namespace CalTooltipFixer.Method
             if (getTooltip is not null)
             {
                 string baseTextValue = Language.GetTextValue(replacedTextPath);
-                string trueValue;
-                try
-                {
-                    trueValue = string.Format(baseTextValue, args);
-                }
-                catch
-                {
-                    trueValue = baseTextValue + "，格式化出错";
-                }
+                string trueValue = GetFormatString(baseTextValue, args);
                 getTooltip.Text = trueValue;
             }
         }
@@ -269,10 +139,7 @@ namespace CalTooltipFixer.Method
         /// </summary>
         /// <param name="color"></param>
         /// <returns></returns>
-        public static string ToHexStringColor(this Color color)
-        {
-            return $"{color.R:X2}{color.G:X2}{color.B:X2}";
-        }
+        public static string ToHexStringColor(this Color color) => $"{color.R:X2}{color.G:X2}{color.B:X2}";
         /// <summary>
         /// 获取物品形式的Buff名字，这些都注册在本mod里面了
         /// </summary>
@@ -285,13 +152,35 @@ namespace CalTooltipFixer.Method
             string actualName = Language.GetTextValue(path);
             return $"[i:CalTooltipFixer/{interName}]{actualName}";
         }
-        public static string GetLangValue(this string path)
+        public static void HoldingShiftToReplace(this List<TooltipLine> tooltips, Mod mod, string replacedPath, string pingText, Color pingColor)
         {
-            return Language.GetTextValue(path);
+            if (Main.keyState.IsKeyDown(Keys.LeftShift))
+                tooltips.FuckThisTooltipAndReplace(replacedPath);
+            else
+            {
+                tooltips.QuickNewLineWithColor(mod, pingText, pingColor);
+                tooltips.QuickNewLineNoColor(mod, TooltipConstants.ItemPath + nameof(AngelicAlliance) + ".HoldShiftTo");
+            }
         }
-        public static string GetLangValue(this string path, string wantedText)
+
+        public static string ToLangValue(this string path) => Language.GetTextValue(path);
+        public static string ToLangValue(this string path, string wantedText) => Language.GetTextValue(path + wantedText);
+        /// <summary>
+        /// 获取格式化文本的扩展方法
+        /// </summary>
+        /// <param name="basicString">可编入字段的基本字符串</param>
+        /// <param name="objects">键入参</param>
+        /// <returns>一个带有键入参的格式化字符串</returns>
+        public static string GetFormatString(this string basicString, params object[] objects)
         {
-            return Language.GetTextValue(path + wantedText);
+            try
+            {
+                return string.Format(basicString, objects);
+            }
+            catch
+            {
+                return basicString + "，格式化出错";
+            }
         }
     }
 }

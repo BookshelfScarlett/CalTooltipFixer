@@ -1,6 +1,7 @@
 GenericHeader: ""
 GeneralResistanceTooltip: ""
-ClearTextKet:""
+ClearTextKet: ""
+
 ResistanceAres: {
 	DisplayName: Resistance Ares
 	Tooltip: ""

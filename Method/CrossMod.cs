@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using log4net.Repository.Hierarchy;
+using Microsoft.Xna.Framework;
 using Terraria;
 using Terraria.ModLoader;
 
@@ -15,12 +16,12 @@ namespace CalTooltipFixer.Method
         public static string Catalyst => "CatalystMod";
         public static string Inheritance => "CalamityInheritance";
         public static string Infernum => "InfernumMode";
-        public static void SetupModLine(this List<TooltipLine> tooltips, Mod mod, string modName, string color)
+        public static void SetupModLine(this List<TooltipLine> tooltips, Mod mod, string modName, Color color)
         {
             string textPath = MethodList.GetLocalText(modName);
             if (string.IsNullOrEmpty(textPath))
                 return;
-            tooltips.QuickNewLine(mod, textPath, color);
+            tooltips.QuickNewLineWithColor(mod, textPath, color);
         }
         public static bool? GetInheritancePlayerFieldBoolen(this Player player, string boolField)
         {

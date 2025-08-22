@@ -37,6 +37,11 @@ AbyssGear: {
 	AbyssGear: ""
 }
 
+AngelicAlliance: {
+	ActualShift: ""
+	HoldShiftTo: ""
+}
+
 AmalgamBuffsSave: ""
 
 Nucleogenesis: {

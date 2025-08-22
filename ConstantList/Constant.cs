@@ -23,7 +23,7 @@ namespace CalTooltipFixer.ConstantList
         public static readonly int SulphDoubleJumpDamage = 20;
         #endregion
         #region 常规文本颜色
-        public static Color CalTooltipExtraColor => new(248, 240, 166);
+        public static Color CalExtraColor => new(248, 240, 166);
         public static Color CalamityModifyColor => new(220, 20, 60);
         public static Color CatalystModifyColor => new(250, 133, 243);
         public static Color GoozmaModifyColor => new(250, 239, 133);
@@ -54,7 +54,7 @@ namespace CalTooltipFixer.ConstantList
         public static string BossResistanceSpecial => BossResisPath + "." + SpecialDRString;
         #endregion
         //职业们
-        static string IsClassName => "ClassNameReal";
+        public static string IsClassName => "ClassNameReal";
         // #ffc67bff
         // #8bffe2ff
         // #ffa2f3ff

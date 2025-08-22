@@ -1,4 +1,3 @@
-using CalTooltipFixer.Method;
 using Terraria.ModLoader;
 
 namespace CalTooltipFixer.Content.Items.BuffPlaceholder

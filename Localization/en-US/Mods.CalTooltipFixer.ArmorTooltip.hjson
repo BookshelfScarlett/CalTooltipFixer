@@ -5,3 +5,14 @@ DemonshadeArmor:
 	Enraged enemy deals 1.5x damage to the player instead of 1.25x 
 	'''
 ShogunHead: ""
+MolluskArmor: "{0}{1}"
+
+FixedFrostArmor: {
+	GeneralText: "{0}{1}{2}"
+	BoostingText: "{0}{1}{2}{3}"
+}
+
+FixedNebulaArmor: "{0}{1}{2}{3}{4}{5}"
+FixedSolarArmor: "{0}{1}"
+FixedSilvaSummon: "{0}{1}{2}"
+FixedSpectreMask: "{0}"

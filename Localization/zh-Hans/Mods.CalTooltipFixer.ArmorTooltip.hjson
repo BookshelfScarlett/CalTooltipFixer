@@ -5,3 +5,38 @@ DemonshadeArmor:
 	触发魔影激怒时将多承受1.5x伤害（原1.25x）
 	'''
 ShogunHead: "1112231"
+MolluskArmor:
+	'''
+	生成的扇贝以Debuff的形式造成{0}伤害
+	该伤害受{1}加成，但不受[i:CalamityMod/OldFashioned]古典酒加成
+	'''
+
+FixedFrostArmor: {
+	GeneralText:
+		'''
+		实际加成为{0}x，而非加算
+		距离敌怪低于{1}格物块内时近战加成最高
+		距离敌怪远于{2}格物块外时远程加成最高
+		'''
+	BoostingText:
+		'''
+		{0}当前获得1.{1}x伤害加成
+		{2}当前获得1.{3}x伤害加成
+		'''
+}
+
+FixedNebulaArmor:
+	'''
+	取消使Debuff伤害无效化的效果
+	{0}粉色星云每级伤害加成由15%削弱至{1}%
+	{2}橙色星云每级生命恢复由+3HP/s削弱至+{3}HP/s
+	{4}蓝色星云每级魔力恢复由+10MP/s削弱至+{5}MP/s
+	'''
+FixedSolarArmor:
+	'''
+	移除套装奖励提供的12%伤害减免效果
+	将护盾的冲刺伤害提高至{0}
+	将护盾的伤害减免变为加算而非乘算，且修改为{1}%
+	'''
+FixedSilvaSummon: "{0}造成{1}基础伤害，且受{2}加成"
+FixedSpectreMask: 幽魂射弹造成的伤害倍率降低至{0}%

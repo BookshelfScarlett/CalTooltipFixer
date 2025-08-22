@@ -6,10 +6,10 @@ NPCName: {
 
 ModName: {
 	CalamityMod: 灾厄
-	// WrathoftheGodName: ""
-	// HuntOfTheGodName: ""
-	// Catalyst: ""
-	// Inheritance: ""
+	WrathoftheGodName: 众神之怒
+	HuntOfTheGodName: 旧神之猎
+	Catalyst: 灾劫
+	Inheritance: 灾厄遗产
 	Infernum: 炼狱
 	Vanilla: 原版
 }
