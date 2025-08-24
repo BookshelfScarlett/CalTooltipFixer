@@ -76,7 +76,7 @@ CosmicActualRequirement: 实际需要超过{0}格仆从栏位才能使用这把�
 BossResistanceConstant: {
 	General: 该武器对{0}造成{1}%伤害
 	TrueMelee: 真近战武器对{0}造成{1}%伤害
-	// SpecialDR: "{0}{1}"
+	SpecialDR: "{0}对{1}造成{2}%伤害"
 }
 
 GoozmaResis: {
@@ -88,10 +88,10 @@ GoozmaResis: {
 
 AstralSlimeResis: {
 	General: 该武器对末世星史莱姆造成{0}%伤害
-	SpecialDR: 该武器在末世星史莱姆处于特定招式下造成{0}%伤害
-	TrueMelee: 真近战武器对末世星史莱姆造成{0}%伤害
+	SpecialDR: "{0}在末世星史莱姆特定招式下造成{1}%伤害"
+	TrueMelee: "{0}真近战武器对末世星史莱姆造成{1}%伤害"
 	RogueStealthDR: 潜伏攻击对末世星史莱姆仅造成{0}%伤害
-	RogueStealthDRSpecial: 潜伏攻击在末世星史莱姆处于特定招式下造成{0}%伤害
+	RogueStealthDRSpecial: "{0}潜伏攻击在末世星史莱姆处于特定招式下造成{1}%伤害"
 	LeonidProgenitorSpecialDR: 生成的小狮源陨星和狮源流星造成{0}%伤害，大狮源陨星和该武器本体造成{1}%伤害
 	VortexpopperDR:
 		'''

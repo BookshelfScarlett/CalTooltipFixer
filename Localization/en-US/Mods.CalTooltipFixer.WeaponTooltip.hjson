@@ -60,7 +60,7 @@ ThornWhipCatalystNerfed:
 	[c/FA85F3:Catalyst Modiflication]
 	Nerfed weapon's damage from 28 to {0}, use time from 30 to {1};
 	'''
-RogueStealthMul: "[c/F796EE: Stealth Damage Multiple:] {0}%"
+RogueStealthMul: "[c/F796EE:Stealth Damage Multipler:] {0}%"
 
 PlagueSMG: {
 	Crits: "[c/96F79C:{0}% chance to critically strike if the target is afflicted with the Plague debuff.]"
@@ -90,10 +90,10 @@ GoozmaResis: {
 
 AstralSlimeResis: {
 	General: This weapon deals {0}% damage to Astrageldon
-	SpecialDR: This weapon deals {0}% damage to Astrageldon during certain attacks
-	TrueMelee: True melee deals {0}% damage to Astrageldon
+	SpecialDR: "{0} only deals {1}% damage to Astrageldon during certain attacks"
+	TrueMelee: "{0} deals {1}% damage to Astrageldon"
 	RogueStealthDR: Stealth attack deals {0}% damage to Astrageldon
-	RogueStealthDRSpecial: Stealth attack deals {0}% damage to Astrageldon during certain attacks
+	RogueStealthDRSpecial: "{0}Stealth attacks deals {1}% damage to Astrageldon during certain attacks"
 	LeonidProgenitorSpecialDR: Astrageldon has {0}% of damage resistance on small comets and stars, {1}% on large comets and main projectile
 	VortexpopperDR:
 		'''
@@ -103,7 +103,7 @@ AstralSlimeResis: {
 }
 
 CalamityResistanceValue: {
-	General: "{0}{1}"
+	General: "{0} only takes {1}% damage of the weapon"
 	TrueMelee: "{0}{1}"
 	Piercing: ""
 

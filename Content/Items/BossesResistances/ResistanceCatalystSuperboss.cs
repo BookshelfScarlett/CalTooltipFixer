@@ -1,10 +1,13 @@
-using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using CalamityMod.Items.Weapons.Melee;
+using CalamityMod.Items.Weapons.Magic;
+using CalamityMod.Items.Weapons.Ranged;
+using CalamityMod.Items.Weapons.Rogue;
+using CalamityMod.Items.Weapons.Summon;
+using CalamityMod.NPCs.ExoMechs.Ares;
 using CalTooltipFixer.ConstantList;
 using CalTooltipFixer.Content.Players;
+using CalTooltipFixer.Core;
 using CalTooltipFixer.Method;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -15,34 +18,27 @@ using Terraria.ModLoader;
 
 namespace CalTooltipFixer.Content.Items.BossesResistances
 {
-    public abstract class BaseResistance : ModItem, ILocalizedModType
+    public class ResistanceCatalystSuperboss: ModItem, ILocalizedModType
     {
         public new string LocalizationCategory => "ResistanceItem";
-        /// <summary>
-        /// 对应Boss物品的大小
-        /// </summary>
-        public virtual Vector2 BossHeadBox{ get; }
-        /// <summary>
-        /// 这个物品对应的Boss的ID
-        /// 考虑到可能有多个boss，因此是个数组
-        /// </summary>
-        public virtual int[] BossType { get; }
-        /// <summary>
-        /// Boss的减伤系列的物品，属于字符串数组
-        /// </summary>
-        public virtual string[] WeaponType{ get; }
-        /// <summary>
-        /// 原版的武器数组，需要单独打表
-        /// </summary>
-        public virtual string[] WeaponTypeVanilla => null;
-        /// <summary>
-        /// 该物品对应的mod名
-        /// </summary>
-        public virtual string WeaponMod => "CalamityMod";
-        /// <summary>
-        /// 如果启用了炼狱模式，完全关闭原本的写法
-        /// </summary>
-        public virtual bool AnyModedLoaded=> false;
+        public Mod TheMod = CalTooltipFixer.Catalyst;
+        public int SuperBoss => TheMod.Find<ModNPC>(TooltipConstants.CatalystSuperBoss).Type;
+        public override bool IsLoadingEnabled(Mod mod) => CalTooltipFixer.Catalyst is null; 
+        public int[] BossType => [SuperBoss];
+        //我这个表得在这打吗，那很有了
+        public static string[] WeaponType =>
+        [
+            nameof(TheSwarmer),
+            nameof(HivePod),
+            nameof(Malachite),
+            nameof(DukesDecapitator),
+            nameof(Vortexpopper),
+            nameof(LeonidProgenitor)
+        ];
+        public static string[] WeaponTypeVanilla => ["NebulaArcanum"];
+        public static Vector2 BossHeadBox => new(28, 42);
+        public static string WeaponMod => "CalamityMod";
+        public static void SetResistanceBoolen(TooltipPlayer player) => player.ResistanceCatalystSuperbossBool = true;
         public override void SetStaticDefaults()
         {
             Item.ResearchUnlockCount = 1;
@@ -59,7 +55,6 @@ namespace CalTooltipFixer.Content.Items.BossesResistances
             Item.maxStack = 1;
             Item.UseSound = SoundID.Camera;
             Item.consumable = false;
-            ExtraSD();
         }
         public override bool AltFunctionUse(Player player) => player.ThisMod()._cacheResistanceList is not null;
         public override bool CanUseItem(Player player)
@@ -126,28 +121,12 @@ namespace CalTooltipFixer.Content.Items.BossesResistances
             //拼接武器数组成大型字符串
             string weaponList = GetWeaponList(WeaponType);
             //获取起始符
-            string headerString = GetHeaderName(WeaponMod);
-            if (AnyModedLoaded)
-            {
-                //如果启用了炼狱模式，重写一个新的方法
-                InfernumEnable();
-            }
-            else
-            {
-                //发送
-                Main.NewText(headerString + " " + weaponList);
-                //原版由于字符问题，需要单独发送，已经处理好了特殊情况了
-                GetVanillaList();
-                //如果是其他模组的武器需要，则补充，不过应该不会出现这种情况吧
-                ExtraListShouldShow(player);
-            }
+            string headerString = GetHeaderName("CalamityMod");
+            Main.NewText(headerString + " " + weaponList);
+            GetVanillaList();
             //设置Boss对应的boolen
             SetResistanceBoolen(modPlayer);
             return base.UseItem(player);
-        }
-
-        public virtual void InfernumEnable()
-        {
         }
 
         public static void ClearCacheResistanceWithItsBoolen(TooltipPlayer modPlayer, bool value)
@@ -161,11 +140,17 @@ namespace CalTooltipFixer.Content.Items.BossesResistances
             //设置boolen为对应值
             boolenField.SetValue(modPlayer, value);
         }
-        public virtual void ExtraListShouldShow(Player player)
+        internal void GetVanillaList()
         {
-
+            //空数组直接返回即可
+            if (WeaponTypeVanilla is null || WeaponTypeVanilla.Length == 0)
+                return;
+            string headString = GetHeaderName("Vanilla");
+            string vanillaList = string.Join("", WeaponTypeVanilla.Select(str => $"[i:{str}]"));
+            //发送即可
+            Main.NewText(headString + " " + vanillaList);
         }
-        internal string GetWeaponList(string[] list)
+        internal static string GetWeaponList(string[] list)
         {
             if (list is null || list.Length == 0)
             {
@@ -190,26 +175,6 @@ namespace CalTooltipFixer.Content.Items.BossesResistances
             }
             return realString;
         }
-        internal void GetVanillaList()
-        {
-            //空数组直接返回即可
-            if (WeaponTypeVanilla is null || WeaponTypeVanilla.Length == 0)
-                return;
-            string headString = GetHeaderName("Vanilla");
-            string vanillaList = string.Join("", WeaponTypeVanilla.Select(str => $"[i:{str}]"));
-            //发送即可
-            Main.NewText(headString + " " + vanillaList);
-        }
         public static int NPCID<T>() where T : ModNPC => ModContent.NPCType<T>();
-        
-        /// <summary>
-        /// 重写这个方法，标记模组player类某个特定boolen，防止多次复用
-        /// </summary>
-        /// <param name="set"></param>
-        public virtual void SetResistanceBoolen(TooltipPlayer set){}
-        public virtual void ExtraSD()
-        {
-
-        }
     }
 }

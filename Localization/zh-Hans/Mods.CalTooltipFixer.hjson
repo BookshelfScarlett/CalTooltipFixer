@@ -1,9 +1,19 @@
-CatalystModName: 灾劫模组武器减伤
+CatalystResistance: 灾劫模组武器减伤
 CalTooltipFixerExtra: 额外工具提示
 CalamityModifyPingText: 灾厄模组改动
+// WrathoftheGodsPingText: Wrath of the God Modiflication
 GoozmaModName: 旧神之猎模组武器减伤
 CalamityResistance.PingText: 灾厄模组武器减伤
 OldFashionedSupport: "{0}造成{1}伤害，取{2}伤害加成"
+
+PingText: {
+	CalamityModify: 灾厄模组改动
+	CalTooltipExtra: 额外工具提示
+	WrathoftheGodsModify: 众神之怒改动
+	CalamityResistance: 灾厄模组武器减伤
+	HuntResistance: 旧神之猎模组武器减伤
+	CatalystResistance: 灾劫模组武器减伤
+}
 
 Items: {
 	TesterSword: {

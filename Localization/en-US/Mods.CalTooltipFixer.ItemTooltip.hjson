@@ -22,7 +22,7 @@ OldFashionedBounesText:
 	'''
 	A small text wall about the Old Fashioned:
 	Whether some accessory/armor bonuses can receive Old Fashioned's damage boost...
-	Depends solely on whether they are marked as eligible for its enhancement
+	Depends solely on whether, They are marked as eligible for its enhancement
 	Bonuses from other mods, like extra projectiles, won't get the boost without such markings
 	And the boost is also affected by internal execution order, but we won't dig it so much
 	Calamity Tooltip Fixer will try to mark eligible items but they may not be accurate, just for reference. 
@@ -30,19 +30,41 @@ OldFashionedBounesText:
 	'''
 CanOldFashionedBounes: "{0}[c/FFE5AC:The projectiles/minions spawned by this accessory can be enhanced by Old Fashioned.]"
 CosmicActualRequirement: Requires over 10 (not equal to 10) to use the weapon
-AscendantInsignia: ""
+AscendantInsignia: All of the stats related to flight ability can't be stacked with {0}Soaring Insignia
 
 AbyssGear: {
-	MoveSpeed: ""
-	AbyssGear: ""
+	MoveSpeed:
+		'''
+		Only reduces the move speed when moving on the ground,
+		Does not affect the horizontal speed when flying in the air."
+		'''
+	AbyssGear: This damage reduction occurs before the defense calculation.
 }
 
 AngelicAlliance: {
-	ActualShift: ""
-	HoldShiftTo: ""
+	ActualShift:
+		'''
+		Okay, when you hold down Shift, you'll see this wall text, but I hope you can read it patiently, as it’s crucial for understanding what follows.
+		First, we need to clarify a core concept: projectile list. 
+		In Terraria, there is a "projectile list" that dynamically stores all projectiles currently spawned in the game world.
+		The order of this list strictly matches the spawning order of projectiles.
+		Much like a parking lot: just as cars park in the order they arrive, projectiles are "stored" in the projectile list in the sequence they spawn
+		Which means, the list itself is equivalent to this "projectile parking lot".
+		Why mention the projectile list specifically? Because it is directly related to a bug in Angelic Alliance.
+		According to its description, Angelic Alliance spawns a corresponding number of Angels  based on minion slots the player currently own.
+		After spawning, the damage calculation logic for Angels is as follows:
+		Retrieves a number of projectiles equal to the number of Angels from the front of the projectile list, then takes 10% of these projectiles' damage values as the base damage of each Angel.
+		However, there is a clear flaw in this calculation logic: at the code level, Angelic Alliance does not add any conditional checks when retrieving projectile damage.
+		This means it will indiscriminately include all projectiles — including enemy projectiles, projectiles with no damage, and even inactive projectiles.
+		Once these invalid/non-target projectiles (like enemy projectiles) are spawned earlier than the player’s summons and thus "stored" in the projectile list first, they will occupy the front positions of the list. 
+		In this case, when Angels retrieve damage, they will most likely prioritize the damage of these invalid projectiles (some of which have 0 damage), instead of the player’s summons’ damage.
+		Which meas, leading to the Angels to deal 0 damage.
+		In short, this is the root cause of the bug where Angels may deal 0 damage.
+		'''
+	HoldShiftTo: Hold Shift for a bug about Angelic Alliance
 }
 
-AmalgamBuffsSave: ""
+AmalgamBuffsSave: Only saves and extends the buffs and their durations from the Calamity Mod and the vanilla version.
 
 Nucleogenesis: {
 	DebuffList: Debuffs that could inflict: {0}

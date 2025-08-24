@@ -20,7 +20,6 @@ namespace CalTooltipFixer
             LoadCrossMod();
 			CalFixerList.LoadList();
         }
-
 		public static void LoadCrossMod()
 		{
 			Mod[] mods =

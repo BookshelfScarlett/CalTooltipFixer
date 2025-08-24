@@ -16,7 +16,7 @@ namespace CalTooltipFixer.Content.Armor
         public const float ProymixtedDamage = 0.15f;
         public const int MinDistanceTiles = (int)(FrostArmorSetChange.MinDistance / 16f);
         public const int MaxDistanceTiles = (int)(FrostArmorSetChange.MaxDistance / 16f);
-        internal string GeneralTextPath => ThisArmorFixedTextValue + ".GeneralText";
+        internal string GeneralTextPath => ThisArmorFixedText + ".GeneralText";
         internal static string MeleeClass => TooltipConstants.MeleeClassName.ToLangValue();
         internal static string RangedClass => TooltipConstants.RangedClassName.ToLangValue();
         public override int HeadType => ItemID.FrostHelmet;
@@ -25,8 +25,8 @@ namespace CalTooltipFixer.Content.Armor
         public override int ShouldApplyTo() => HeadType;
         //常规静态变量最好在外部就进行赋值，避免重复局部定义
         internal static string HasColoredText = GetColoredText(TooltipConstants.CalExtraColor, TooltipConstants.CalExtraText);
-        internal static string Header => "\n" + HasColoredText + "\n";
-        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, bool isFull, TooltipLine setBonusLine)
+        internal new static string Header => "\n" + HasColoredText + "\n";
+        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, TooltipLine setBonusLine)
         {
             //搜索距离玩家屏幕范围内的怪。
             //why？
@@ -36,7 +36,7 @@ namespace CalTooltipFixer.Content.Armor
             ref bool cacheNPC = ref owner.ThisMod()._cacheForstArmorNPC;
             string GeneralText = GeneralTextPath.ToLangValue().GetFormatString(MaxBounsDamage, MinDistanceTiles, MaxDistanceTiles);
 
-            string BoostingTextPath = ThisArmorFixedTextValue + ".BoostingText";
+            string BoostingTextPath = ThisArmorFixedText + ".BoostingText";
             if (closestNPC is not null)
             {
                 float getDistance = closestNPC.Distance(owner.Center);
@@ -54,18 +54,16 @@ namespace CalTooltipFixer.Content.Armor
                 MeleeBoost = 0f;
                 RangedBoost = 0f;
             }
-            if (setBonusLine is not null)
+  
+            //只有实际有加成时才会显示这个东西……什么的。
+            if (MeleeBoost == 0f && RangedBoost == 0f)
             {
-                //只有实际有加成时才会显示这个东西……什么的。
-                if (MeleeBoost == 0f && RangedBoost == 0f)
-                {
-                    setBonusLine.Text += Header + GeneralText;
-                }
-                else if (closestNPC is not null || cacheNPC)
-                {
-                    string formatedText = BoostingTextPath.ToLangValue().GetFormatString(MeleeClass, MeleeBoost.ToIntSingle().ToString(), RangedClass, RangedBoost.ToIntSingle().ToString());
-                    setBonusLine.Text += Header + GeneralText + "\n" + formatedText;
-                }
+                setBonusLine.Text += Header + GeneralText;
+            }
+            else if (closestNPC is not null || cacheNPC)
+            {
+                string formatedText = BoostingTextPath.ToLangValue().GetFormatString(MeleeClass, MeleeBoost.ToIntSingle().ToString(), RangedClass, RangedBoost.ToIntSingle().ToString());
+                setBonusLine.Text += Header + GeneralText + "\n" + formatedText;
             }
         }
     }

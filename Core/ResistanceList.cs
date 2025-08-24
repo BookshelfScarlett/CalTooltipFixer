@@ -21,6 +21,7 @@ namespace CalTooltipFixer.Core
         private static List<string> profanedBossesResistanceList = [];
         private static List<string> deusResistanceList = [];
         private static List<string> ravagerResistanceList = [];
+        private static List<string> doGResistanceList = [];
 
 
         public static List<string> AresResistanceList { get => aresResistanceList; set => aresResistanceList = value; }
@@ -31,6 +32,7 @@ namespace CalTooltipFixer.Core
         public static List<string> ProfanedBossesResistanceList { get => profanedBossesResistanceList; set => profanedBossesResistanceList = value; }
         public static List<string> DeusResistanceList { get => deusResistanceList; set => deusResistanceList = value; }
         public static List<string> RavagerResistanceList { get => ravagerResistanceList; set => ravagerResistanceList = value; }
+        public static List<string> DoGResistanceList { get => doGResistanceList; set => doGResistanceList = value; }
 
         public static void LoadResistance()
         {
@@ -47,7 +49,8 @@ namespace CalTooltipFixer.Core
                 DeusResistanceList,
                 SentinalsResistanceList,
                 ProfanedBossesResistanceList,
-                RavagerResistanceList
+                RavagerResistanceList,
+                DoGResistanceList
             ];
             for (int i = 0; i < list.Length; i++)
                 list[i] = null;
@@ -87,6 +90,7 @@ namespace CalTooltipFixer.Core
                 nameof(Omicron),
                 nameof(VoidVortex),
                 nameof(VoltaicClimax),
+                nameof(Vehemence),
                 nameof(TheWand),
                 nameof(GruesomeEminence),
 
@@ -104,14 +108,29 @@ namespace CalTooltipFixer.Core
                 nameof(GodSlayerSlug),
                 nameof(DragonScales)
             ];
-            OldDukeResistanceList =
+            DoGResistanceList =
             [
+                nameof(WavePounder),
                 nameof(TimeBolt),
                 nameof(EidolicWail),
                 nameof(VenusianTrident),
                 nameof(Valediction),
                 nameof(NuclearFury),
-                nameof(TimeBolt)
+            ];
+            SentinalsResistanceList =
+            [
+                nameof(DazzlingStabberStaff),
+                nameof(ElementalAxe),
+                nameof(PristineFury),
+                nameof(TacticiansTrumpCard),
+                nameof(MoltenAmputator),
+
+                nameof(StellarTorusStaff)
+            ];
+            ProfanedBossesResistanceList =
+            [
+                nameof(HellsSun),
+                nameof(ElementalLance)
             ];
             //TODO:应该有什么不用打两次表的方法的
             AresResistanceListID =

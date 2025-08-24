@@ -2,6 +2,11 @@ NPCName: {
 	AresName: 阿瑞斯
 	ExoTwinsName: 阿波罗与阿尔特弥斯
 	ThanatosName: 塔纳托斯
+	CeaselessName: 无尽虚空暗能量球
+	StormWeaverName: 风暴编织者
+	ProvidenceName: 亵渎天神
+	GuardiansName: 亵渎守卫
+	DoGName: 神明吞噬者
 }
 
 ModName: {
@@ -29,6 +34,9 @@ ClassNameReal: {
 	Magic: "[i:SorcererEmblem][c/FFA2F3:魔法职业]"
 	Summon: "[i:SummonerEmblem][c/81A2FC:召唤职业]"
 	Rogue: "[i:CalamityMod/RogueEmblem][c/B278FF:盗贼职业]"
+	Generic: "[i:AvengerEmblem][c/FF9E9E:无职业]"
+	Best: "[i:DestroyerEmblem][c/FFBB27:最强职业]"
+	TrueMelee: "[i:CalamityMod/WarbanneroftheSun][c/FF7B7B:真近战]"
 }
 
 ProjectileName: {
@@ -36,6 +44,10 @@ ProjectileName: {
 	Nanobeam: 纳米光束
 	SilvaCrystal: 林海水晶
 	ElectricSpark: 电火花
+	Tentacle: 欧米茄蓝触手
+	Val: 天蓝女武神
+	RedDevil: 红恶魔
+	Laser: 激光
 }
 
 // BuffName.Irra: ""

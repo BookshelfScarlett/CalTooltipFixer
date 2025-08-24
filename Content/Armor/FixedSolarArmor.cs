@@ -11,22 +11,19 @@ namespace CalTooltipFixer.Content.Armor
     public class FixedSolarArmor : BaseFixedArmor
     {
         public const int SolarShieldDamage = 1200;
-        public const int NerfedDR = 12;
+        public const int NerfedDR = 20;
         public override int HeadType => ItemID.SolarFlareHelmet;
         public override int BodyType => ItemID.SolarFlareBreastplate;
         public override int LegsType => ItemID.SolarFlareLeggings;
-        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, bool isFull, TooltipLine setBonusLine)
+        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, TooltipLine setBonusLine)
         {
-            string fixedText = ThisArmorFixedTextValue.ToLangValue();
-            if (!string.IsNullOrEmpty(fixedText))
-            {
-                string realText = fixedText.GetFormatString(SolarShieldDamage, NerfedDR);
-                if (setBonusLine is not null)
-                {
-                    string hasColoredText = GetColoredText(TooltipConstants.CalamityModifyColor, TooltipConstants.CalamityModifyText);
-                    setBonusLine.Text += "\n" + hasColoredText + "\n" + realText;
-                }
-            }
+            string fixedText = ThisArmorFixedText.ToLangValue();
+            if (string.IsNullOrEmpty(fixedText))
+                return;
+
+            string realText = fixedText.GetFormatString(SolarShieldDamage, NerfedDR);
+            string hasColoredText = GetColoredText(TooltipConstants.CalamityModifyColor, TooltipConstants.CalamityModifyText);
+            setBonusLine.Text += "\n" + hasColoredText + "\n" + realText;
         }
     }
 }

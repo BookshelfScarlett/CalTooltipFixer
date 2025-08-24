@@ -2,16 +2,21 @@ NPCName: {
 	AresName: Ares
 	ExoTwinsName: Apollo and Artemis
 	ThanatosName: Thanatos
+	CeaselessName: Ceaseless Void's Dark Enegry
+	StormWeaverName: Storm Weaver
+	ProvidenceName: Providence
+	GuardiansName: Profaned Guardians
+	DoGName: Devourer of Gods
 }
 
 ModName: {
-	CalamityMod: ""
-	WrathoftheGodName: ""
-	HuntOfTheGodName: ""
-	Catalyst: ""
-	Inheritance: ""
-	Infernum: ""
-	Vanilla: ""
+	CalamityMod: Calamity Mod
+	WrathoftheGodName: Wrath of the Gods
+	HuntOfTheGodName: Hunt of the Gods
+	Catalyst: Catalyst
+	Inheritance: Calamity Inheritance
+	Infernum: Infernum
+	Vanilla: Vanilla
 }
 
 ClassName: {
@@ -29,14 +34,20 @@ ClassNameReal: {
 	Magic: "[i:SorcererEmblem][c/FFA2F3:Magic Class]"
 	Summon: "[i:SummonerEmblem][c/81A2FC:Summon Class]"
 	Rogue: "[i:CalamityMod/RogueEmblem][c/B278FF:Rogue Class]"
-	Best:""
+	Generic: "[i:AvengerEmblem][c/FF9E9E:Classless]"
+	Best: "[i:DestroyerEmblem][c/FFBB27:Best Class]"
+	TrueMelee: "[i:CalamityMod/WarbanneroftheSun][c/FF7B7B:True Melee]"
 }
 
 ProjectileName: {
 	Nanoblade: Nanoblade
 	Nanobeam: Nanobeam
-	SilvaCrystal: ""
+	SilvaCrystal: Silva Crystal
 	ElectricSpark: Sparks
+	Tentacle: Omega Blue Tentacle
+	Val: Valkrie
+	RedDevil: Red Devil
+	Laser: Laser
 }
 
 BuffName.Irra: ""

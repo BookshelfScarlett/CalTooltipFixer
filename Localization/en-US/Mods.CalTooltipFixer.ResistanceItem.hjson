@@ -1,18 +1,59 @@
-GenericHeader: ""
-GeneralResistanceTooltip: ""
+GenericHeader: "Damage resistance of {0} weapons: "
+GeneralResistanceTooltip:
+	'''
+	Send the damage resistance table about this boss to your chatbox
+	It will also be displayed in the tooltip of the corresponding weapon
+	The chatbox output will only be performed once.
+	Rigth Click to reset.
+	'''
 ClearTextKet: ""
 
 ResistanceAres: {
-	DisplayName: Resistance Ares
-	Tooltip: ""
+	DisplayName: Resistance of Ares
+	Tooltip: "{0}"
 }
 
 ResistanceThanatos: {
-	DisplayName: Resistance Thanatos
-	Tooltip: ""
+	DisplayName: Resistance of Thanatos
+	Tooltip: "{0}"
 }
 
 ResistanceExoTwins: {
-	DisplayName: Resistance Exo Twins
-	Tooltip: ""
+	DisplayName: Resistance of Artemis and Apollo
+	Tooltip: "{0}"
+}
+
+ResistanceDoG: {
+	DisplayName: Resistance of Devourer of Gods
+	Tooltip: "{0}"
+	TimeBolt: "{0} takes {1}% damage of the weapon's stealth attack"
+	Valediction: "{0} takes {1}% damage of the typhoon spawned by stealth attack"
+}
+
+ResistanceProviAndGuards: {
+	DisplayName: Resistance of Providence and Guardians
+	Tooltip: "{0}"
+	Special: "{0} only deals {1}% damage to the rocks of the Guardians"
+}
+
+ResistanceSentinels: {
+	DisplayName: Resistance of Sentinels
+	Tooltip:
+		'''
+		{0}
+		Signus currently has no damage resistance yet
+		'''
+	Special: "{0} and {1} only takes {3}% from the {2} strike"
+	PristineFury: "{0} only takes {1}% damage of the right click of Pristine Fury"
+	TacticiansTrumpCardBoom: "{0} only takes {1}% damage of the explosion cause by this weapon"
+}
+
+ResistanceCatalystSuperboss: {
+	DisplayName: Resistance Catalyst Superboss
+	Tooltip: "{0}"
+}
+
+ResistanceGoozma: {
+	DisplayName: Resistance Goozma
+	Tooltip: "{0}"
 }

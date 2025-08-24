@@ -20,18 +20,15 @@ namespace CalTooltipFixer.Content.Armor
         public override int HeadType => ItemID.NebulaHelmet;
         public override int BodyType => ItemID.NebulaBreastplate;
         public override int LegsType => ItemID.NebulaLeggings;
-        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, bool isFull, TooltipLine setBonusLine)
+        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, TooltipLine setBonusLine)
         {
-            string fixedText = ThisArmorFixedTextValue.ToLangValue();
-            if (!string.IsNullOrEmpty(fixedText))
-            {
-                string realText = fixedText.GetFormatString(DamagePickUp, DamageNerfedPerLevel.ToString(), RegenPickUp, RegenNerfedPerLevel.ToString(), ManaPickUp, ManaRegenNerfedPerLevel.ToString());
-                if (setBonusLine is not null)
-                {
-                    string hasColoredText = GetColoredText(TooltipConstants.CalamityModifyColor, TooltipConstants.CalamityModifyText);
-                    setBonusLine.Text += "\n" + hasColoredText + "\n" + realText;
-                }
-            }
+            string fixedText = ThisArmorFixedText.ToLangValue();
+            if (string.IsNullOrEmpty(fixedText))
+                return;
+                
+            string realText = fixedText.GetFormatString(DamagePickUp, DamageNerfedPerLevel.ToString(), RegenPickUp, RegenNerfedPerLevel.ToString(), ManaPickUp, ManaRegenNerfedPerLevel.ToString());
+            string hasColoredText = GetColoredText(TooltipConstants.CalamityModifyColor, TooltipConstants.CalamityModifyText);
+            setBonusLine.Text += "\n" + hasColoredText + "\n" + realText;
         }
     }
 }

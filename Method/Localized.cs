@@ -68,6 +68,22 @@ namespace CalTooltipFixer.Method
             //创建即可
             tooltips.Add(new TooltipLine(mod, "name", realValue));
         }
+        public static void QuickNewLineWithColor(this List<TooltipLine> tooltips, string name, Mod mod, string path, Color color)
+        {
+            string textValue = Language.GetTextValue(path);
+            string colorValue = color.ToHexStringColor();
+            if (string.IsNullOrEmpty(textValue))
+                return;
+            //处理染色换行
+            string[] lines = textValue.Split(['\n'], StringSplitOptions.None);
+            for (int i = 0; i < lines.Length; i++)
+            {
+                lines[i] = $"[c/{colorValue}:{lines[i]}]";
+            }
+            string realValue = string.Join("\n", lines);
+            //创建即可
+            tooltips.Add(new TooltipLine(mod, name, realValue));
+        }
         /// <summary>
         /// 直接创建一个新的Tooltip，附带键入参数
         /// </summary>
@@ -103,6 +119,17 @@ namespace CalTooltipFixer.Method
                 tooltips.Add(new TooltipLine(mod, "Name", textValue));
             }
             
+        }
+        public static void QuickNewLineNoColor(this List<TooltipLine> tooltips, string name, Mod mod, string path, params object[] args)
+        {
+            string textValue = Language.GetTextValue(path);
+            //空文本返回
+            if (string.IsNullOrEmpty(textValue))
+                return;
+            //格式化文本
+            string realValue = textValue.GetFormatString(args);
+            //创建即可
+            tooltips.Add(new TooltipLine(mod, name, realValue));
         }
         #endregion
         /// <summary>
@@ -165,6 +192,8 @@ namespace CalTooltipFixer.Method
 
         public static string ToLangValue(this string path) => Language.GetTextValue(path);
         public static string ToLangValue(this string path, string wantedText) => Language.GetTextValue(path + wantedText);
+        public static string GetProjName(this string name) => StringNameHandler($"ProjectileName.{name}").ToLangValue();
+        public static string GetBossName(this string name) => StringNameHandler($"NPCName.{name}").ToLangValue();
         /// <summary>
         /// 获取格式化文本的扩展方法
         /// </summary>

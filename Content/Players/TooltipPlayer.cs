@@ -13,6 +13,11 @@ namespace CalTooltipFixer.Content.Players
         public bool ResistanceAresBool = false;
         public bool ResistanceThanatosBool = false;
         public bool ResistanceExoTwinsBool = false;
+        public bool ResistanceDoGBool = false;
+        public bool ResistanceProviAndGuardsBool = false;
+        public bool ResistanceSentinelsBool = false;
+        public bool ResistanceCatalystSuperbossBool = false;
+        public bool ResistanceGoozmaBool = false;
         #endregion
         //寒霜套存player类
         public float FrostArmorMeleeBoost = 0f;

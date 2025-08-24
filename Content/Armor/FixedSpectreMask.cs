@@ -13,18 +13,15 @@ namespace CalTooltipFixer.Content.Armor
         public override int HeadType => ItemID.SpectreMask;
         public override int BodyType => ItemID.SpectreRobe;
         public override int LegsType => ItemID.SpectreBoots;
-        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, bool isFull, TooltipLine setBonusLine)
+        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, TooltipLine setBonusLine)
         {
-            string fixedText = ThisArmorFixedTextValue.ToLangValue();
-            if (!string.IsNullOrEmpty(fixedText))
-            {
-                string realText = fixedText.GetFormatString(GhostDamageNerfed);
-                if (setBonusLine is not null)
-                {
-                    string hasColoredText = GetColoredText(TooltipConstants.CalExtraColor, TooltipConstants.CalExtraText);
-                    setBonusLine.Text += "\n" + hasColoredText + "\n" + realText;
-                }
-            }
+            string fixedText = ThisArmorFixedText.ToLangValue();
+            if (string.IsNullOrEmpty(fixedText))
+                return;
+            
+            string realText = fixedText.GetFormatString(GhostDamageNerfed);
+            string hasColoredText = GetColoredText(TooltipConstants.CalExtraColor, TooltipConstants.CalExtraText);
+            setBonusLine.Text += "\n" + hasColoredText + "\n" + realText;
         }
     }
 }

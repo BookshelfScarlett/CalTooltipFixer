@@ -16,16 +16,16 @@ namespace CalTooltipFixer.Content.Armor
         public override int BodyType => ArmorType<PrismaticRegalia>();
         public override int LegsType => ArmorType<PrismaticGreaves>();
         public override bool ShouldPingOldFashioned => true;
-        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, bool isFull, TooltipLine setBonusLine)
+        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, TooltipLine setBonusLine)
         {
-            string fixedText = Language.GetTextValue(ThisArmorFixedTextValue);
-            if (!string.IsNullOrEmpty(fixedText))
-            {
-                string laserName = MethodList.GetStringValueFromHandler("ProjectileName.Laser").ToLangValue();
-                int laserRealDamage = owner.ToOldFashioned(LasersDamage);
-                string realText = fixedText.GetFormatString(laserName, laserRealDamage, RocketDamage, TooltipConstants.MagicClassName.ToLangValue());
-                setBonusLine.Text += Header + realText;
-            }
+            string fixedText = Language.GetTextValue(ThisArmorFixedText);
+            if (string.IsNullOrEmpty(fixedText))
+                return;
+            
+            string laserName = "Laser".GetProjName();
+            int laserRealDamage = owner.ToOldFashioned(LasersDamage);
+            string realText = fixedText.GetFormatString(laserName, laserRealDamage, RocketDamage, TooltipConstants.MagicClassName.ToLangValue());
+            setBonusLine.Text += Header + realText;
         }
     }
 }

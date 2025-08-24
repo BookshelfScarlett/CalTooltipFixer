@@ -15,20 +15,17 @@ namespace CalTooltipFixer.Content.Armor
         public override int BodyType => ArmorType<SilvaArmor>();
         public override int LegsType => ArmorType<SilvaLeggings>();
         public override bool ShouldPingOldFashioned => true;
-        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, bool isFull, TooltipLine setBonusLine)
+        public override void IsFullArmorTooltip(Item item, List<TooltipLine> tooltips, Player owner, TooltipLine setBonusLine)
         {
-            string fixedText = Language.GetTextValue(ThisArmorFixedTextValue);
-            if (!string.IsNullOrEmpty(fixedText))
-            {
-                string crystalName = MethodList.GetStringValueFromHandler("ProjectileName.SilvaCrystal").ToLangValue();
-                int realDamage = owner.ToOldFashioned(CrystalDamage);
-                string realText = fixedText.GetFormatString(crystalName, realDamage, TooltipConstants.SummonClassName.ToLangValue());
-                if (setBonusLine is not null)
-                {
-                    string hasColoredText = GetColoredText(TooltipConstants.CalExtraColor, TooltipConstants.CalExtraText);
-                    setBonusLine.Text += "\n" + hasColoredText + "\n" + realText;
-                }
-            }
+            string fixedText = Language.GetTextValue(ThisArmorFixedText);
+            if (string.IsNullOrEmpty(fixedText))
+                return;
+
+            string crystalName = "SilvaCrystal".GetProjName();
+            int realDamage = owner.ToOldFashioned(CrystalDamage);
+            string realText = fixedText.GetFormatString(crystalName, realDamage, TooltipConstants.SummonClassName.ToLangValue());
+            string hasColoredText = GetColoredText(TooltipConstants.CalExtraColor, TooltipConstants.CalExtraText);
+            setBonusLine.Text += "\n" + hasColoredText + "\n" + realText;
         }
     }
 }

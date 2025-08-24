@@ -22,3 +22,38 @@ ResistanceExoTwins: {
 	DisplayName: 阿尔特弥斯与阿波罗免伤表
 	Tooltip: "{0}"
 }
+
+ResistanceDoG: {
+	DisplayName: 神明吞噬者免伤表
+	Tooltip: "{0}"
+	TimeBolt: 该武器的潜伏攻击对{0}造成{1}%伤害
+	Valediction: 潜伏攻击生成的旋风射弹对{0}造成{1}%伤害
+}
+
+ResistanceProviAndGuards: {
+	DisplayName: 亵渎天神与亵渎守卫免伤表
+	Tooltip: "{0}"
+	Special: 亵渎守卫的石头仅承受{0}的{1}%伤害
+}
+
+ResistanceSentinels: {
+	DisplayName: 神之使徒免伤表
+	Tooltip:
+		'''
+		{0}
+		西格纳斯暂时没有任何免伤
+		'''
+	Special: "{0}和{1}仅承受{2}武器{3}%的伤害"
+	PristineFury: "{0}仅承受纯元怒焰右键{1}%的伤害"
+	TacticiansTrumpCardBoom: "{0}仅承受战术家的王牌造成的爆炸{1}%伤害"
+}
+
+ResistanceCatalystSuperboss: {
+	DisplayName: 末世星史莱姆免伤表
+	Tooltip: "{0}"
+}
+
+ResistanceGoozma: {
+	// DisplayName: Resistance Goozma
+	// Tooltip: "{0}"
+}

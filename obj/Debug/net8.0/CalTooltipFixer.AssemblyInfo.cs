@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CalTooltipFixer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+285e82a4b68f02a1b05cd1cdd292038b74c279f3")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa4c37048a1f43f02276dddd892b9e8ea8b1a6d5")]
 [assembly: System.Reflection.AssemblyProductAttribute("CalTooltipFixer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CalTooltipFixer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

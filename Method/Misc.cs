@@ -1,3 +1,4 @@
+using System;
 using CalamityMod;
 using CalamityMod.Items.Potions.Alcohol;
 using CalTooltipFixer.Content.Players;
@@ -57,6 +58,7 @@ namespace CalTooltipFixer.Method
         }
         public static bool AnyNPCs<T>() where T : ModNPC => NPC.AnyNPCs(ModContent.NPCType<T>());
         public static int ToIntSingle(this float single) => (int)(single * 100f);
+        public static string ToMulString(this double num)=> $"{num}x";
         public static int ToOldFashioned(this Player player, int baseDamage)
         {
             bool wtf = player.Calamity().oldFashioned;
